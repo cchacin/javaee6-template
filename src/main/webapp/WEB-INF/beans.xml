@@ -8,6 +8,6 @@
     </alternatives>
 
     <interceptors>
-        <class>com.example.javaee.interceptors.ActionProtocolInterceptor</class>
+        <class>com.example.javaee.interceptors.LoggingInterceptor</class>
     </interceptors>
 </beans>
