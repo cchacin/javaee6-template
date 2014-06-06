@@ -20,8 +20,8 @@
         <tomee.version>1.6.0.2</tomee.version>
         <tomee.classifier>plus</tomee.classifier>
         <arquillian.version>1.1.4.Final</arquillian.version>
-        <arquillian-persistence.version>1.0.0.Alpha6</arquillian-persistence.version>
         <sirona.version>0.1-incubating</sirona.version>
+        <cucumber.version>1.1.7</cucumber.version>
     </properties>
 
     <build>
@@ -276,20 +276,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Arquillian Persistence -->
-        <dependency>
-            <groupId>org.jboss.arquillian.extension</groupId>
-            <artifactId>arquillian-persistence-api</artifactId>
-            <version>${arquillian-persistence.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.extension</groupId>
-            <artifactId>arquillian-persistence-impl</artifactId>
-            <version>${arquillian-persistence.version}</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- Redis -->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -377,13 +363,13 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>1.1.6</version>
+            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.1.6</version>
+            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
 
