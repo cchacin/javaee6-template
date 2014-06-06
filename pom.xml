@@ -330,6 +330,7 @@
             <version>${tomee.version}</version>
             <classifier>${tomee.classifier}</classifier>
             <type>zip</type>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.openejb</groupId>
