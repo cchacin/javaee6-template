@@ -1,4 +1,4 @@
-package com.example.javaee.interceptors;
+package com.example.javaee.qualifiers;
 
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.Retention;

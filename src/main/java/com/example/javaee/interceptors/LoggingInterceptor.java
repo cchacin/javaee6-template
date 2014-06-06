@@ -1,5 +1,6 @@
 package com.example.javaee.interceptors;
 
+import com.example.javaee.qualifiers.Loggable;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
@@ -16,20 +17,24 @@ public class LoggingInterceptor {
 
     @AroundInvoke
     protected Object log(final InvocationContext ic) throws Exception {
-        logger.entering(ic.getTarget().getClass().getName(), ic.getMethod().getName());
-        logger.info(">>> " + ic.getTarget().getClass().getName() + "-" + ic.getMethod().getName());
-        StringBuilder sb = new StringBuilder("[");
-        for (Object obj : ic.getParameters()) {
-            sb.append(obj.toString());
-            sb.append(", ");
-        }
-        sb.append("]");
-        logger.info("parameters: " + sb.toString());
-        try {
-            return ic.proceed();
-        } finally {
-            logger.exiting(ic.getTarget().getClass().getName(), ic.getMethod().getName());
-            logger.info("<<< " + ic.getTarget().getClass().getName() + "-" + ic.getMethod().getName());
-        }
+	logger.entering(ic.getTarget().getClass().getName(), ic.getMethod()
+	        .getName());
+	logger.info(">>> " + ic.getTarget().getClass().getName() + "-"
+	        + ic.getMethod().getName());
+	StringBuilder sb = new StringBuilder("[");
+	for (Object obj : ic.getParameters()) {
+	    sb.append(obj.toString());
+	    sb.append(", ");
+	}
+	sb.append("]");
+	logger.info("parameters: " + sb.toString());
+	try {
+	    return ic.proceed();
+	} finally {
+	    logger.exiting(ic.getTarget().getClass().getName(), ic.getMethod()
+		    .getName());
+	    logger.info("<<< " + ic.getTarget().getClass().getName() + "-"
+		    + ic.getMethod().getName());
+	}
     }
 }

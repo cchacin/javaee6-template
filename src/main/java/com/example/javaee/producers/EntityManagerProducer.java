@@ -12,7 +12,6 @@ public class EntityManagerProducer {
     private EntityManagerFactory emf;
 
     @Produces
-    // you can also make this @RequestScoped
     public EntityManager create() {
 	return this.emf.createEntityManager();
     }

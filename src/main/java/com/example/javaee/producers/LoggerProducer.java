@@ -1,15 +1,12 @@
 package com.example.javaee.producers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import java.util.logging.Logger;
 
 public class LoggerProducer {
     @Produces
-    public Logger createLogger(InjectionPoint ip) {
-	return LoggerFactory.getLogger(ip.getMember().getDeclaringClass()
-	        .getName());
+    public Logger produceLogger(InjectionPoint ip) {
+	return Logger.getLogger(ip.getMember().getDeclaringClass().getName());
     }
 }
