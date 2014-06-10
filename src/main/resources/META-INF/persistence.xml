@@ -12,10 +12,10 @@
         <non-jta-data-source>java:global/jdbc/javaeeSampleDatabaseUnmanaged</non-jta-data-source>
 
         <!-- @MappedSuperclass classes - see OPENJPA-1926 -->
-        <class>com.example.javaee.domain.AbstractDomainObject</class>
+        <class>com.example.javaee.entities.AbstractDomainObject</class>
 
         <!-- entities -->
-        <class>com.example.javaee.domain.User</class>
+        <class>com.example.javaee.entities.User</class>
 
         <properties>
             <property name="openjpa.DynamicEnhancementAgent" value="true"/>

@@ -1,6 +1,6 @@
 package com.example.javaee.endpoints;
 
-import com.example.javaee.domain.User;
+import com.example.javaee.entities.User;
 import com.example.javaee.qualifiers.Loggable;
 import com.example.javaee.interceptors.LoggingInterceptor;
 import com.example.javaee.repositories.UserRepository;
