@@ -1,5 +1,6 @@
 package com.example.javaee.repositories;
 
+import com.example.javaee.core.AbstractITest;
 import com.example.javaee.entities.User;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
