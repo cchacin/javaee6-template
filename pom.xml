@@ -276,11 +276,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Redis -->
+        <!-- Redisson -->
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.4.2</version>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
         <!-- Test Frameworks -->
