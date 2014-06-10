@@ -1,4 +1,4 @@
-package com.example.javaee.repository;
+package com.example.javaee.repositories;
 
 import com.example.javaee.core.Dependencies;
 import com.example.javaee.domain.User;

@@ -1,4 +1,4 @@
-package com.example.javaee.repository;
+package com.example.javaee.repositories;
 
 import com.example.javaee.domain.User;
 import org.apache.deltaspike.data.api.EntityRepository;
