@@ -1,9 +1,9 @@
 package com.example.javaee.endpoints;
 
 import com.example.javaee.entities.User;
-import com.example.javaee.qualifiers.Loggable;
 import com.example.javaee.interceptors.LoggingInterceptor;
-import com.example.javaee.repositories.UserRepository;
+import com.example.javaee.qualifiers.Loggable;
+import com.example.javaee.services.UserService;
 
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
@@ -20,10 +20,10 @@ import java.util.List;
 public class UserEndpoint {
 
 	@Inject
-	private UserRepository userRepository;
+	private UserService userService;
 
 	@GET
 	public List<User> getUsers() {
-		return this.userRepository.findAll();
+		return this.userService.findAll();
 	}
 }

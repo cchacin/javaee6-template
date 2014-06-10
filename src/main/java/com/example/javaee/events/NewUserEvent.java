@@ -11,7 +11,7 @@ import javax.enterprise.event.Observes;
 @ApplicationScoped
 public class NewUserEvent {
 
-    public void logNewUser(@Observes @New User newUser) {
-        log.info("New user created {}", newUser);
-    }
+	public void logNewUser(@Observes @New User newUser) {
+		log.info("New user created {}", newUser);
+	}
 }
