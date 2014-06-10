@@ -8,8 +8,8 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import java.util.logging.Logger;
 
-@Interceptor
 @Loggable
+@Interceptor
 public class LoggingInterceptor {
 
 	@Inject

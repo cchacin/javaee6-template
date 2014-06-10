@@ -1,6 +1,5 @@
 package com.example.javaee.producers;
 
-import lombok.Data;
 import org.apache.deltaspike.core.api.config.ConfigProperty;
 import org.redisson.Config;
 import org.redisson.Redisson;
@@ -10,7 +9,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
-@Data
 @ApplicationScoped
 public class RedisProducer {
 
