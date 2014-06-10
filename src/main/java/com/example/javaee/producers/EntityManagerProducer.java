@@ -8,17 +8,17 @@ import javax.persistence.PersistenceUnit;
 
 public class EntityManagerProducer {
 
-    @PersistenceUnit
-    private EntityManagerFactory emf;
+	@PersistenceUnit
+	private EntityManagerFactory emf;
 
-    @Produces
-    public EntityManager create() {
-	return this.emf.createEntityManager();
-    }
-
-    public void close(@Disposes EntityManager em) {
-	if (em.isOpen()) {
-	    em.close();
+	@Produces
+	public EntityManager create() {
+		return this.emf.createEntityManager();
 	}
-    }
+
+	public void close(@Disposes EntityManager em) {
+		if (em.isOpen()) {
+			em.close();
+		}
+	}
 }

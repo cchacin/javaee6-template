@@ -20,19 +20,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 public class User extends AbstractDomainObject {
-    private static final long serialVersionUID = 3810638653455000233L;
+	private static final long serialVersionUID = 3810638653455000233L;
 
-    @Column(nullable = false, length = 9, unique = true)
-    private String username;
+	@Column(nullable = false, length = 9, unique = true)
+	private String username;
 
-    @Size(min = 2, max = 20, message = "invalid first name")
-    @NotNull
-    @Column
-    private String firstname;
+	@Size(min = 2, max = 20, message = "invalid first name")
+	@NotNull
+	@Column
+	private String firstname;
 
-    @Column
-    private String lastname;
+	@Column
+	private String lastname;
 
-    @Column
-    private String password;
+	@Column
+	private String password;
 }

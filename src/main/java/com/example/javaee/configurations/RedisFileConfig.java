@@ -4,10 +4,10 @@ import org.apache.deltaspike.core.api.config.PropertyFileConfig;
 
 public class RedisFileConfig implements PropertyFileConfig {
 
-    private static final long serialVersionUID = -77623805738821341L;
+	private static final long serialVersionUID = -77623805738821341L;
 
-    @Override
-    public String getPropertyFileName() {
-	return "redis.properties";
-    }
+	@Override
+	public String getPropertyFileName() {
+		return "redis.properties";
+	}
 }

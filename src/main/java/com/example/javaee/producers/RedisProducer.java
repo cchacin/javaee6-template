@@ -14,25 +14,25 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class RedisProducer {
 
-    private Config config;
-    private Redisson redisson;
+	private Config config;
+	private Redisson redisson;
 
-    @Inject
-    @ConfigProperty(name = "server", defaultValue = "127.0.0.1:6397")
-    private String server;
+	@Inject
+	@ConfigProperty(name = "server", defaultValue = "127.0.0.1:6397")
+	private String server;
 
-    @PostConstruct
-    public void init() {
-	this.config = new Config();
-	this.config.addAddress(this.server);
-	this.config.setConnectionPoolSize(10);
+	@PostConstruct
+	public void init() {
+		this.config = new Config();
+		this.config.addAddress(this.server);
+		this.config.setConnectionPoolSize(10);
 
-	this.redisson = Redisson.create(config);
-    }
+		this.redisson = Redisson.create(config);
+	}
 
-    @Produces
-    public Redisson produceRedis() {
-	return this.redisson;
-    }
+	@Produces
+	public Redisson produceRedis() {
+		return this.redisson;
+	}
 
 }

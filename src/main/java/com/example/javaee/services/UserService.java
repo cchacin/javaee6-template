@@ -9,18 +9,18 @@ import java.util.List;
 
 public class UserService {
 
-    @Inject
-    private UserRepository userRepository;
+	@Inject
+	private UserRepository userRepository;
 
-    @Inject
-    private Redisson redisson;
+	@Inject
+	private Redisson redisson;
 
-    public List<User> findAll() {
-	List<User> users = redisson.getList("users");
+	public List<User> findAll() {
+		List<User> users = redisson.getList("users");
 
-	if (users == null || users.isEmpty()) {
-	    users = userRepository.findAll();
+		if (users == null || users.isEmpty()) {
+			users = userRepository.findAll();
+		}
+		return users;
 	}
-	return users;
-    }
 }

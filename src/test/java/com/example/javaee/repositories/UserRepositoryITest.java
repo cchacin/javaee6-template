@@ -21,48 +21,48 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(Arquillian.class)
 public class UserRepositoryITest {
 
-    @Inject
-    private UserRepository cut;
-    private User user;
+	@Inject
+	private UserRepository cut;
+	private User user;
 
-    @Deployment
-    public static WebArchive createDeployment() {
-	final WebArchive war = ShrinkWrap
-	        .create(WebArchive.class)
-	        .addPackage("com.example.javaee.configurations")
-	        .addPackage("com.example.javaee.entities")
-	        .addPackage("com.example.javaee.endpoints")
-	        .addPackage("com.example.javaee.interceptors")
-	        .addPackage("com.example.javaee.producers")
-	        .addPackage("com.example.javaee.qualifiers")
-	        .addPackage("com.example.javaee.repositories")
-	        .addPackage("com.example.javaee.services")
-	        .addAsManifestResource("META-INF/persistence.xml",
-	                "persistence.xml")
-	        .addAsWebInfResource("resources.xml")
-	        .addAsServiceProvider(PropertyFileConfig.class,
-	                RedisFileConfig.class)
-	        .addAsResource("redis.properties")
-	        .addAsLibraries(Dependencies.get());
-	return war;
-    }
-
-    @Before
-    @InSequence(1)
-    public final void setUp() {
-	this.user = new User("cchacin", "Carlos", "Chacin", "pass");
-
-	List<User> toRemove = this.cut.findAll();
-
-	for (User user : toRemove) {
-	    this.cut.remove(user);
+	@Deployment
+	public static WebArchive createDeployment() {
+		final WebArchive war = ShrinkWrap
+				.create(WebArchive.class)
+				.addPackage("com.example.javaee.configurations")
+				.addPackage("com.example.javaee.entities")
+				.addPackage("com.example.javaee.endpoints")
+				.addPackage("com.example.javaee.interceptors")
+				.addPackage("com.example.javaee.producers")
+				.addPackage("com.example.javaee.qualifiers")
+				.addPackage("com.example.javaee.repositories")
+				.addPackage("com.example.javaee.services")
+				.addAsManifestResource("META-INF/persistence.xml",
+						"persistence.xml")
+				.addAsWebInfResource("resources.xml")
+				.addAsServiceProvider(PropertyFileConfig.class,
+						RedisFileConfig.class)
+				.addAsResource("redis.properties")
+				.addAsLibraries(Dependencies.get());
+		return war;
 	}
-    }
 
-    @Test
-    @InSequence(2)
-    public final void shouldReturnOneWhenSearchByFirstname() {
-	this.cut.save(this.user);
-	assertThat(this.cut.findByFirstnameLike("Carlos")).hasSize(1);
-    }
+	@Before
+	@InSequence(1)
+	public final void setUp() {
+		this.user = new User("cchacin", "Carlos", "Chacin", "pass");
+
+		List<User> toRemove = this.cut.findAll();
+
+		for (User user : toRemove) {
+			this.cut.remove(user);
+		}
+	}
+
+	@Test
+	@InSequence(2)
+	public final void shouldReturnOneWhenSearchByFirstname() {
+		this.cut.save(this.user);
+		assertThat(this.cut.findByFirstnameLike("Carlos")).hasSize(1);
+	}
 }

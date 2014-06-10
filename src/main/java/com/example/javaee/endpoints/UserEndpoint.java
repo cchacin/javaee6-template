@@ -19,11 +19,11 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserEndpoint {
 
-    @Inject
-    private UserRepository userRepository;
+	@Inject
+	private UserRepository userRepository;
 
-    @GET
-    public List<User> getUsers() {
-	return this.userRepository.findAll();
-    }
+	@GET
+	public List<User> getUsers() {
+		return this.userRepository.findAll();
+	}
 }
