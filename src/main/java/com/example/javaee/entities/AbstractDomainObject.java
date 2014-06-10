@@ -1,4 +1,4 @@
-package com.example.javaee.domain;
+package com.example.javaee.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;

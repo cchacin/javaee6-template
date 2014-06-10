@@ -1,4 +1,4 @@
-package com.example.javaee.domain;
+package com.example.javaee.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
