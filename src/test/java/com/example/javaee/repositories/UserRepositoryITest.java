@@ -1,12 +1,8 @@
 package com.example.javaee.repositories;
 
-import com.example.javaee.core.Dependencies;
-import com.example.javaee.domain.User;
-import org.jboss.arquillian.container.test.api.Deployment;
+import com.example.javaee.entities.User;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,25 +13,11 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Arquillian.class)
-public class UserRepositoryITest {
+public class UserRepositoryITest extends AbstractITest {
 
     @Inject
     private UserRepository cut;
     private User user;
-
-    @Deployment
-    public static WebArchive createDeployment() {
-	final WebArchive war = ShrinkWrap
-	        .create(WebArchive.class)
-	        .addPackage(UserRepository.class.getPackage())
-	        .addPackage(User.class.getPackage())
-	        .addPackage("com.example.javaee.interceptors")
-	        .addPackage("com.example.javaee.producers")
-	        .addAsManifestResource("META-INF/persistence.xml",
-	                "persistence.xml").addAsWebInfResource("resources.xml")
-	        .addAsLibraries(Dependencies.get());
-	return war;
-    }
 
     @Before
     @InSequence(1)
