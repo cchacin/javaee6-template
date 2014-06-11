@@ -2,16 +2,19 @@ package com.example.javaee.events;
 
 import com.example.javaee.entities.User;
 import com.example.javaee.qualifiers.New;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import java.util.logging.Logger;
 
-@Slf4j
 @ApplicationScoped
 public class NewUserEvent {
 
+	@Inject
+	private transient Logger logger;
+
 	public void logNewUser(@Observes @New User newUser) {
-		log.info("New user created {}", newUser);
+		logger.info("New user created " + newUser);
 	}
 }
