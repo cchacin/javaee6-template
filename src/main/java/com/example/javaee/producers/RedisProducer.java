@@ -22,10 +22,10 @@ public class RedisProducer {
 	@PostConstruct
 	public void init() {
 		this.config = new Config();
-		this.config.addAddress(this.server);
-		this.config.setConnectionPoolSize(10);
+		this.config.useSingleConnection().setAddress(this.server)
+				.setConnectionPoolSize(10);
 
-		this.redisson = Redisson.create(config);
+		this.redisson = Redisson.create(this.config);
 	}
 
 	@Produces
