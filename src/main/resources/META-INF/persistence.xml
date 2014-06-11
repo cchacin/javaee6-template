@@ -12,7 +12,8 @@
         <non-jta-data-source>java:global/jdbc/javaeeSampleDatabaseUnmanaged</non-jta-data-source>
 
         <!-- @MappedSuperclass classes - see OPENJPA-1926 -->
-        <class>com.example.javaee.entities.AbstractDomainObject</class>
+        <class>com.example.javaee.entities.Model</class>
+        <class>com.example.javaee.entities.DatedModel</class>
 
         <!-- entities -->
         <class>com.example.javaee.entities.User</class>
@@ -21,6 +22,7 @@
             <property name="openjpa.DynamicEnhancementAgent" value="true"/>
             <property name="openjpa.Log" value="SQL=TRACE"/>
             <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true"/>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
         </properties>
     </persistence-unit>
 </persistence>

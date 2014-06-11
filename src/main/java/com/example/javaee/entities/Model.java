@@ -1,10 +1,13 @@
 package com.example.javaee.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
 @MappedSuperclass
-public abstract class AbstractDomainObject implements Serializable {
+public abstract class Model implements Serializable {
 	private static final long serialVersionUID = 2209366869487621842L;
 
 	@Id
@@ -14,11 +17,4 @@ public abstract class AbstractDomainObject implements Serializable {
 	@Version
 	private Long version;
 
-	public boolean isTransient() {
-		return this.version == null;
-	}
-
-	public Long getId() {
-		return id;
-	}
 }

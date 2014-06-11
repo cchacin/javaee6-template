@@ -1,14 +1,10 @@
 package com.example.javaee.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -16,23 +12,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "users")
+@ToString(callSuper = true)
 @Entity
 @XmlRootElement
-public class User extends AbstractDomainObject {
+public class User extends DatedModel {
 	private static final long serialVersionUID = 3810638653455000233L;
 
-	@Column(nullable = false, length = 9, unique = true)
-	private String username;
-
-	@Size(min = 2, max = 20, message = "invalid first name")
 	@NotNull
-	@Column
-	private String firstname;
+	@Pattern(regexp = ".+@.+\\.[a-z]+")
+	private String email;
 
-	@Column
-	private String lastname;
-
-	@Column
+	@NotNull
+	@Size(min = 5, max = 15)
 	private String password;
+
+	@NotNull
+	@Size(min = 3, max = 15)
+	private String fullname;
 }

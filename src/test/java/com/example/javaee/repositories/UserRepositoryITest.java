@@ -31,11 +31,12 @@ public class UserRepositoryITest {
 				.create(WebArchive.class)
 				.addPackage("com.example.javaee.configurations")
 				.addPackage("com.example.javaee.entities")
-				.addPackage("com.example.javaee.endpoints")
+				.addPackage("com.example.javaee.events")
 				.addPackage("com.example.javaee.interceptors")
 				.addPackage("com.example.javaee.producers")
 				.addPackage("com.example.javaee.qualifiers")
 				.addPackage("com.example.javaee.repositories")
+				.addPackage("com.example.javaee.resources")
 				.addPackage("com.example.javaee.services")
 				.addAsManifestResource("META-INF/persistence.xml",
 						"persistence.xml")
@@ -50,7 +51,7 @@ public class UserRepositoryITest {
 	@Before
 	@InSequence(1)
 	public final void setUp() {
-		this.user = new User("cchacin", "Carlos", "Chacin", "pass");
+		this.user = new User("one@example.com", "passw0rd", "One name");
 
 		List<User> toRemove = this.cut.findAll();
 
@@ -63,6 +64,6 @@ public class UserRepositoryITest {
 	@InSequence(2)
 	public final void shouldReturnOneWhenSearchByFirstname() {
 		this.cut.save(this.user);
-		assertThat(this.cut.findByFirstnameLike("Carlos")).hasSize(1);
+		assertThat(this.cut.findByEmail("one@example.com")).hasSize(1);
 	}
 }

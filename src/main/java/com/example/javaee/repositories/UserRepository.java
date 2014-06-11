@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends EntityRepository<User, Long> {
-	User findByOptionalUsername(String username);
-
-	List<User> findByFirstnameLike(String firstname);
+	List<User> findByEmail(String email);
 }

@@ -26,8 +26,11 @@ public class UserService {
 
 		if (users.isEmpty()) {
 			List<User> dbUsers = userRepository.findAll();
-			users.addAll(dbUsers);
-			users.expire(1, TimeUnit.MINUTES);
+
+			if (!dbUsers.isEmpty()) {
+				users.addAll(dbUsers);
+				users.expire(1, TimeUnit.MINUTES);
+			}
 		}
 		return users;
 	}
