@@ -1,4 +1,4 @@
-package com.example.javaee.endpoints;
+package com.example.javaee.resources;
 
 import com.example.javaee.entities.User;
 import com.example.javaee.interceptors.LoggingInterceptor;
