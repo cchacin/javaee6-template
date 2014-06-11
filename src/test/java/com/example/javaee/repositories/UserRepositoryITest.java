@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(Arquillian.class)
 public class UserRepositoryITest {
 
@@ -56,6 +58,6 @@ public class UserRepositoryITest {
 	@InSequence(2)
 	public final void shouldReturnOneWhenSearchByFirstname() {
 		this.cut.create(this.user);
-		// assertThat(this.cut.findByEmail("one@example.com")).hasSize(1);
+		assertThat(this.cut.find(1L)).isNotNull();
 	}
 }
