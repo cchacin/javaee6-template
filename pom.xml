@@ -22,6 +22,7 @@
         <arquillian.version>1.1.4.Final</arquillian.version>
         <sirona.version>0.1-incubating</sirona.version>
         <cucumber.version>1.1.7</cucumber.version>
+        <redisson.version>1.1.0</redisson.version>
     </properties>
 
     <build>
@@ -276,7 +277,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
-            <version>1.0.4</version>
+            <version>${redisson.version}</version>
         </dependency>
 
         <!-- Test Frameworks -->
