@@ -10,14 +10,16 @@ import javax.interceptor.Interceptors;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import java.util.List;
+
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 
 @Path("/users")
 @Loggable
 @Interceptors(LoggingInterceptor.class)
-@Produces(MediaType.APPLICATION_JSON)
-public class UserEndpoint {
+@Produces({APPLICATION_JSON, APPLICATION_XML})
+public class UserResource {
 
 	@Inject
 	private UserService userService;
