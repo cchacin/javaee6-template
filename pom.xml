@@ -196,31 +196,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Flyway -->
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>3.0</version>
-                <configuration>
-                    <url>jdbc:mysql://127.0.0.1:3306/javaee_sample</url>
-                    <user>root</user>
-                    <driver>com.mysql.jdbc.Driver</driver>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.30</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>migrate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
