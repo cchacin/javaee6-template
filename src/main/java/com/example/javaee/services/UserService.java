@@ -11,10 +11,6 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.lordofthejars.bool.Bool.the;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.collection.IsEmptyCollection.empty;
-
 @Loggable
 @ApplicationScoped
 public class UserService {
@@ -28,7 +24,7 @@ public class UserService {
 	public List<User> findAll() {
 		RList<User> users = this.redisson.getList("users");
 
-		if (the(users, is(empty()))) {
+		if (users.isEmpty()) {
 			List<User> dbUsers = userRepository.findAll();
 			users.addAll(dbUsers);
 			users.expire(1, TimeUnit.MINUTES);
