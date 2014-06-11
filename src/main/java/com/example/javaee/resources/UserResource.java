@@ -7,6 +7,7 @@ import com.example.javaee.services.UserService;
 
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,6 +20,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 @Loggable
 @Interceptors(LoggingInterceptor.class)
 @Produces({APPLICATION_JSON, APPLICATION_XML})
+@Consumes({APPLICATION_JSON, APPLICATION_XML})
 public class UserResource {
 
 	@Inject
