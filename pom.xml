@@ -23,6 +23,7 @@
         <sirona.version>0.1-incubating</sirona.version>
         <cucumber.version>1.1.7</cucumber.version>
         <redisson.version>1.1.0</redisson.version>
+        <jackson.version>2.4.0</jackson.version>
     </properties>
 
     <build>
@@ -245,39 +246,22 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Apache DeltaSpike Core -->
-        <dependency>
-            <groupId>org.apache.deltaspike.core</groupId>
-            <artifactId>deltaspike-core-api</artifactId>
-            <version>${deltaspike.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.deltaspike.core</groupId>
-            <artifactId>deltaspike-core-impl</artifactId>
-            <version>${deltaspike.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- Apache DeltaSpike Data -->
-        <dependency>
-            <groupId>org.apache.deltaspike.modules</groupId>
-            <artifactId>deltaspike-data-module-api</artifactId>
-            <version>${deltaspike.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.deltaspike.modules</groupId>
-            <artifactId>deltaspike-data-module-impl</artifactId>
-            <version>${deltaspike.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Redisson -->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <version>${redisson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Test Frameworks -->
@@ -350,6 +334,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.12.6</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Cucumber -->

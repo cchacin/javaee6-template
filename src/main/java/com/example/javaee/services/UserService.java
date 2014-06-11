@@ -22,10 +22,10 @@ public class UserService {
 	private Redisson redisson;
 
 	public List<User> findAll() {
-		RList<User> users = this.redisson.getList("users");
+		RList<User> users = this.redisson.getList(User.FIND_ALL);
 
 		if (users.isEmpty()) {
-			List<User> dbUsers = userRepository.findAll();
+			List<User> dbUsers = userRepository.namedFind(User.FIND_ALL, 0, 10);
 
 			if (!dbUsers.isEmpty()) {
 				users.addAll(dbUsers);

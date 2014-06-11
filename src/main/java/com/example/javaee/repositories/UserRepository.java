@@ -1,12 +1,11 @@
 package com.example.javaee.repositories;
 
 import com.example.javaee.entities.User;
-import org.apache.deltaspike.data.api.EntityRepository;
-import org.apache.deltaspike.data.api.Repository;
+import com.example.javaee.qualifiers.Loggable;
 
-import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 
-@Repository
-public interface UserRepository extends EntityRepository<User, Long> {
-	List<User> findByEmail(String email);
+@Loggable
+@ApplicationScoped
+public class UserRepository extends AbstractRepository<User, Long> {
 }

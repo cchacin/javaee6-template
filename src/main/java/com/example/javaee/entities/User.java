@@ -3,6 +3,8 @@ package com.example.javaee.entities;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -15,8 +17,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ToString(callSuper = true)
 @Entity
 @XmlRootElement
-public class User extends DatedModel {
+@NamedQueries({@NamedQuery(name = User.FIND_ALL, query = "select u from User u")})
+public class User extends Model {
 	private static final long serialVersionUID = 3810638653455000233L;
+
+	public static final String FIND_ALL = "users.all";
 
 	@NotNull
 	@Pattern(regexp = ".+@.+\\.[a-z]+")
