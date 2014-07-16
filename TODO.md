@@ -1,6 +1,5 @@
 - Unit tests
 - Flyway
-- Cucumber tests
 - DBUnit
 - Bean Validation
 - Logging configuration
