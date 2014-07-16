@@ -3,38 +3,33 @@ package com.example.javaee.resources;
 import com.example.javaee.entities.User;
 import com.example.javaee.interceptors.LoggingInterceptor;
 import com.example.javaee.qualifiers.Loggable;
-import com.example.javaee.services.UserService;
+import com.example.javaee.services.IUserService;
 
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.validation.Valid;
-import javax.ws.rs.*;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
-import static javax.ws.rs.core.MediaType.APPLICATION_XML;
-
 @Path("/users")
 @Loggable
 @Interceptors(LoggingInterceptor.class)
-@Produces({APPLICATION_JSON, APPLICATION_XML})
-@Consumes({APPLICATION_JSON, APPLICATION_XML})
-public class UserResource {
+public class UserResource implements IUserResource {
 
 	// @Inject
 	private UriInfo uriInfo;
 
 	@Inject
-	private UserService userService;
+	private IUserService userService;
 
-	@GET
+	@Override
 	public List<User> getUsers() {
 		return this.userService.findAll();
 	}
 
-	@POST
+	@Override
 	public Response saveUser(@Valid final User user) {
 		User aUser = null;
 		try {

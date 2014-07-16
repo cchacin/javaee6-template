@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 @Loggable
 @ApplicationScoped
-public class UserService {
+public class UserService implements IUserService {
 
 	@Inject
 	private UserRepository userRepository;
@@ -21,6 +21,7 @@ public class UserService {
 	@Inject
 	private Redisson redisson;
 
+	@Override
 	public List<User> findAll() {
 		RList<User> users = this.redisson.getList(User.FIND_ALL);
 
@@ -36,6 +37,7 @@ public class UserService {
 		return users;
 	}
 
+	@Override
 	public User save(final User user) {
 		RList<User> users = this.redisson.getList(User.FIND_ALL);
 		User aUser = this.userRepository.create(user);
