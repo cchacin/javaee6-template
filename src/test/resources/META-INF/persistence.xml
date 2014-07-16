@@ -16,7 +16,6 @@
             <property name="openjpa.DynamicEnhancementAgent" value="true"/>
             <property name="openjpa.Log" value="SQL=TRACE"/>
             <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true"/>
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
             <property name="javax.persistence.jdbc.driver" value="${database.driver}" />
             <property name="javax.persistence.jdbc.url" value="${database.url}" />
             <property name="javax.persistence.jdbc.user" value="${database.user}" />
