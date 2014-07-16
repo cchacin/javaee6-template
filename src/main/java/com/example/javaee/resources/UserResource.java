@@ -4,6 +4,7 @@ import com.example.javaee.entities.User;
 import com.example.javaee.interceptors.LoggingInterceptor;
 import com.example.javaee.qualifiers.Loggable;
 import com.example.javaee.services.IUserService;
+import lombok.NoArgsConstructor;
 
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
@@ -15,14 +16,19 @@ import java.util.List;
 
 @Path("/users")
 @Loggable
+@NoArgsConstructor
 @Interceptors(LoggingInterceptor.class)
 public class UserResource implements IUserResource {
 
 	// @Inject
 	private UriInfo uriInfo;
 
-	@Inject
 	private IUserService userService;
+
+	@Inject
+	public UserResource(final IUserService userService) {
+		this.userService = userService;
+	}
 
 	@Override
 	public List<User> getUsers() {

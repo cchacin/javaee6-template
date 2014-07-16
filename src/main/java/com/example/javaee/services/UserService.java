@@ -3,6 +3,7 @@ package com.example.javaee.services;
 import com.example.javaee.entities.User;
 import com.example.javaee.qualifiers.Loggable;
 import com.example.javaee.repositories.UserRepository;
+import lombok.NoArgsConstructor;
 import org.redisson.Redisson;
 import org.redisson.core.RList;
 
@@ -13,13 +14,19 @@ import java.util.concurrent.TimeUnit;
 
 @Loggable
 @ApplicationScoped
+@NoArgsConstructor
 public class UserService implements IUserService {
 
-	@Inject
 	private UserRepository userRepository;
 
-	@Inject
 	private Redisson redisson;
+
+	@Inject
+	public UserService(final UserRepository userRepository,
+			final Redisson redisson) {
+		this.userRepository = userRepository;
+		this.redisson = redisson;
+	}
 
 	@Override
 	public List<User> findAll() {
