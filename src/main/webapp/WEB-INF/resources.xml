@@ -29,7 +29,7 @@
         validationQuery = SELECT 1
     </Resource>
 
-    <Service id="exceptionMapper" class-name="com.example.javaee.exceptions.ConstraintViolationExceptionMapper"/>
+    <Service id="exceptionMapper" class-name="org.superbiz.javaee.exceptions.ConstraintViolationExceptionMapper"/>
 
     <Service id="json" class-name="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
 </resources>

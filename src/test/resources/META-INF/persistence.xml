@@ -6,11 +6,11 @@
 
     <persistence-unit name="demoApplicationPU" transaction-type="RESOURCE_LOCAL">
         <!-- @MappedSuperclass classes - see OPENJPA-1926 -->
-        <class>com.example.javaee.entities.Model</class>
-        <class>com.example.javaee.entities.DatedModel</class>
+        <class>org.superbiz.javaee.entities.Model</class>
+        <class>org.superbiz.javaee.entities.DatedModel</class>
 
         <!-- entities -->
-        <class>com.example.javaee.entities.User</class>
+        <class>org.superbiz.javaee.entities.User</class>
 
         <properties>
             <property name="openjpa.DynamicEnhancementAgent" value="true"/>
