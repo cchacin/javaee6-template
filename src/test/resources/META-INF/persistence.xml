@@ -5,12 +5,6 @@
              version="2.0">
 
     <persistence-unit name="demoApplicationPU" transaction-type="RESOURCE_LOCAL">
-        <!-- needed by tomee 1.6.0+-->
-        <jta-data-source>java:global/jdbc/javaeeSampleDatabase</jta-data-source>
-
-        <!-- config of (non-)jta-data-source isn't needed if there is just one -->
-        <non-jta-data-source>java:global/jdbc/javaeeSampleDatabaseUnmanaged</non-jta-data-source>
-
         <!-- @MappedSuperclass classes - see OPENJPA-1926 -->
         <class>com.example.javaee.entities.Model</class>
         <class>com.example.javaee.entities.DatedModel</class>
@@ -23,6 +17,10 @@
             <property name="openjpa.Log" value="SQL=TRACE"/>
             <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true"/>
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="javax.persistence.jdbc.driver" value="${database.driver}" />
+            <property name="javax.persistence.jdbc.url" value="${database.url}" />
+            <property name="javax.persistence.jdbc.user" value="${database.user}" />
+            <property name="javax.persistence.jdbc.password" value="${database.password}" />
         </properties>
     </persistence-unit>
 </persistence>
