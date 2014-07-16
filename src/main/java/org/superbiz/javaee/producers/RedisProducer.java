@@ -1,23 +1,36 @@
 package org.superbiz.javaee.producers;
 
-import org.superbiz.javaee.qualifiers.ConfigProperty;
+import org.apache.deltaspike.core.api.config.ConfigProperty;
 import org.redisson.Config;
 import org.redisson.Redisson;
 import org.redisson.codec.SerializationCodec;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 
 @ApplicationScoped
 public class RedisProducer {
+	private Config config;
+	private Redisson redisson;
+
+	@Inject
+	@ConfigProperty(name = "server", defaultValue = "128.0.0.1:6397")
+	private String server;
+
+	@PostConstruct
+	public void init() {
+		this.config = new Config();
+		this.config.setCodec(new SerializationCodec());
+		this.config.useSingleServer().setAddress(this.server)
+				.setConnectionPoolSize(10);
+		this.redisson = Redisson.create(this.config);
+
+	}
 
 	@Produces
-	public Redisson produceRedis(
-			@ConfigProperty("redis.server") final String server) {
-		Config config = new Config();
-		config.setCodec(new SerializationCodec());
-		config.useSingleServer().setAddress(server).setConnectionPoolSize(10);
-
-		return Redisson.create(config);
+	public Redisson produceRedis() {
+		return this.redisson;
 	}
 }

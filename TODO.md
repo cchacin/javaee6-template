@@ -1,6 +1,9 @@
 - Unit tests
+- status.json
+- heartbeat.txt
 - DBUnit
 - Bean Validation
 - Logging configuration
 - Separate property files (Git, DB, Redis)
-- Dynamic DAO
+- DeltaSpike
+- HTTP Caching
