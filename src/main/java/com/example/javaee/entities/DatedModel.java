@@ -1,6 +1,7 @@
 package com.example.javaee.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -10,16 +11,13 @@ import java.util.Date;
 
 @Data
 @MappedSuperclass
-public class DatedModel extends Model {
+@EqualsAndHashCode(callSuper = true)
+public abstract class DatedModel extends Model {
 
 	@Column(nullable = false)
-	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =
-	// "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
 	private Date created;
 
 	@Column(nullable = false)
-	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern =
-	// "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
 	private Date modified;
 
 	@PrePersist

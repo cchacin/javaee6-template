@@ -23,6 +23,9 @@
             <property name="openjpa.Log" value="SQL=TRACE"/>
             <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true"/>
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/javaee_sample" />
+            <property name="javax.persistence.jdbc.user" value="root" />
         </properties>
     </persistence-unit>
 </persistence>

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @NamedQueries({@NamedQuery(name = User.FIND_ALL, query = "select u from User u")})
-public class User extends Model {
+public class User extends DatedModel {
 	private static final long serialVersionUID = 3810638653455000233L;
 
 	public static final String FIND_ALL = "users.all";

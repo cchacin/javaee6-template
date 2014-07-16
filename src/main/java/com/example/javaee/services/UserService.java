@@ -25,13 +25,22 @@ public class UserService {
 		RList<User> users = this.redisson.getList(User.FIND_ALL);
 
 		if (users.isEmpty()) {
-			List<User> dbUsers = userRepository.namedFind(User.FIND_ALL, 0, 10);
+			List<User> dbUsers = this.userRepository.namedFind(User.FIND_ALL,
+					0, 10);
 
 			if (!dbUsers.isEmpty()) {
 				users.addAll(dbUsers);
-				users.expire(1, TimeUnit.MINUTES);
+				users.expire(1, TimeUnit.HOURS);
 			}
 		}
 		return users;
+	}
+
+	public User save(final User user) {
+		RList<User> users = this.redisson.getList(User.FIND_ALL);
+		User aUser = this.userRepository.create(user);
+		users.add(aUser);
+		users.expire(1, TimeUnit.HOURS);
+		return aUser;
 	}
 }

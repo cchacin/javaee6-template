@@ -1,0 +1,13 @@
+- Unit tests
+- DI constructor
+- Remove arquillian
+- Flyway
+- Cucumber tests
+- DBUnit
+- Bean Validation
+- Maven Profiles
+- Logging configuration
+- Decoupled with intefaces
+- Separate property files (Git, DB, Redis)
+- WebApplication exceptions
+- Rename packages, groupId to org.superbiz

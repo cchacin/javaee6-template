@@ -16,14 +16,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mockito.version>1.9.5</mockito.version>
         <junit.version>4.11</junit.version>
-        <deltaspike.version>0.7</deltaspike.version>
         <tomee.version>1.6.0.2</tomee.version>
         <tomee.classifier>plus</tomee.classifier>
         <arquillian.version>1.1.4.Final</arquillian.version>
-        <sirona.version>0.1-incubating</sirona.version>
-        <cucumber.version>1.1.7</cucumber.version>
-        <redisson.version>1.1.0</redisson.version>
-        <jackson.version>2.4.0</jackson.version>
+        <cucumber.version>1.1.8</cucumber.version>
+        <redisson.version>1.1.2</redisson.version>
+        <jackson.version>2.4.1.1</jackson.version>
     </properties>
 
     <build>
@@ -162,6 +160,12 @@
                 <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
                 <artifactId>maven-java-formatter-plugin</artifactId>
                 <version>0.4</version>
+                <configuration>
+                    <overrideConfigCompilerVersion>true</overrideConfigCompilerVersion>
+                    <compilerSource>${project.build.targetJdk}</compilerSource>
+                    <compilerCompliance>${project.build.targetJdk}</compilerCompliance>
+                    <compilerTargetPlatform>${project.build.targetJdk}</compilerTargetPlatform>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -182,35 +186,30 @@
                     <removeDefaultWebapps>true</removeDefaultWebapps>
                     <tomeeVersion>${tomee.version}</tomeeVersion>
                     <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
-                    <reloadOnUpdate>true</reloadOnUpdate>
-                    <synchronization>
-                        <extensions> <!-- extensions triggering a redeployment -->
-                            <extension>.class</extension>
-                        </extensions>
-                        <updateOnlyExtensions>
-                            <updateOnlyExtension>.html</updateOnlyExtension>
-                            <updateOnlyExtension>.js</updateOnlyExtension>
-                            <updateOnlyExtension>.css</updateOnlyExtension>
-                        </updateOnlyExtensions>
-                    </synchronization>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <checkStarted>true</checkStarted>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>
     </build>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- Arquillian -->
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${arquillian.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!-- Java EE 6 -->
@@ -250,41 +249,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>hamcrest-core</artifactId>
-                    <groupId>org.hamcrest</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Arquillian -->
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- container specific test jars -->
-        <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>apache-tomee</artifactId>
-            <version>${tomee.version}</version>
-            <classifier>${tomee.classifier}</classifier>
-            <type>zip</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.openejb</groupId>
-            <artifactId>arquillian-tomee-remote</artifactId>
-            <version>${tomee.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- ShrinkWrap -->
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -326,47 +290,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ReST Assured -->
+        <!-- CXF Testing -->
         <dependency>
-            <groupId>com.jayway.restassured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>2.3.1</version>
-            <exclusions>
-                <!-- Exclude Groovy because of classpath issue -->
-                <exclusion>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpclient</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.httpcomponents</groupId>
-                    <artifactId>httpcore</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-lang3</artifactId>
-                    <groupId>org.apache.commons</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>groovy-xml</artifactId>
-                    <groupId>org.codehaus.groovy</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>openejb-cxf-rs</artifactId>
+            <version>4.6.0.2</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>0.9.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <!-- Needs to be the same version that REST Assured depends on -->
-            <version>2.2.1</version>
             <scope>test</scope>
         </dependency>
 
