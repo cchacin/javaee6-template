@@ -18,7 +18,6 @@
         <junit.version>4.11</junit.version>
         <tomee.version>1.6.0.2</tomee.version>
         <tomee.classifier>plus</tomee.classifier>
-        <arquillian.version>1.1.4.Final</arquillian.version>
         <cucumber.version>1.1.8</cucumber.version>
         <redisson.version>1.1.2</redisson.version>
         <jackson.version>2.4.1.1</jackson.version>
@@ -28,18 +27,14 @@
 
         <resources>
             <resource>
-                <directory>src/main/webapp</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
+                <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
 
         <testResources>
             <testResource>
-                <directory>src/test/resources</directory>
+                <directory>${basedir}/src/test/resources</directory>
                 <filtering>true</filtering>
             </testResource>
         </testResources>
@@ -122,6 +117,13 @@
                 <version>2.4</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
 
@@ -313,4 +315,35 @@
         </dependency>
 
     </dependencies>
+
+    <profiles>
+        <!-- Development -->
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <database.url>jdbc:mysql://127.0.0.1:3306/javaee_sample</database.url>
+                <database.user>root</database.user>
+                <database.password></database.password>
+                <database.driver>com.mysql.jdbc.Driver</database.driver>
+
+                <redis.host>127.0.0.1:6379</redis.host>
+            </properties>
+        </profile>
+
+        <!-- Production -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <database.url>jdbc:mysql://127.0.0.1:3306/javaee_sample</database.url>
+                <database.user>root</database.user>
+                <database.password></database.password>
+                <database.driver>com.mysql.jdbc.Driver</database.driver>
+
+                <redis.host>pub-redis-10957.us-east-1-2.2.ec2.garantiadata.com:10957</redis.host>
+            </properties>
+        </profile>
+    </profiles>
 </project>
