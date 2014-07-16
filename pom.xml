@@ -42,6 +42,7 @@
 
         <plugins>
 
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -54,6 +55,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Resources plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -63,6 +65,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Surefire plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -90,6 +93,7 @@
                 </executions>
             </plugin>
 
+            <!-- Failsafe plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -112,6 +116,7 @@
                 </executions>
             </plugin>
 
+            <!-- War Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -126,6 +131,25 @@
                         </resource>
                     </webResources>
                 </configuration>
+            </plugin>
+
+            <!-- Git plugin -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.1.10</version>
+                <executions>
+                    <execution>
+                        <id>git-info</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <configuration>
+                            <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                            <generateGitPropertiesFilename>target/classes/git.properties</generateGitPropertiesFilename>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- OpenJPA Plugin -->

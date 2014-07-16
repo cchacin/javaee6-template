@@ -3,6 +3,7 @@ package org.superbiz.javaee.features;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONObject;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -10,6 +11,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -167,7 +169,6 @@ public class CommonEndpointsStepDefs {
 	@Then("^the response status code should be \"([^\"]*)\"$")
 	public final void the_response_status_code_should_be(final String statusCode)
 			throws Throwable {
-		System.out.println(this.response.getMetadata());
 		assertThat(this.response.getStatus()).isEqualTo(
 				Integer.valueOf(statusCode));
 	}
@@ -175,9 +176,8 @@ public class CommonEndpointsStepDefs {
 	@Then("^response content type should be \"([^\"]*)\"$")
 	public final void response_content_type_should_be(final String contentType)
 			throws Throwable {
-		// TODO content-type
-		// assertThat(contentType).isEqualTo(this.response)
-		System.out.println(this.response.getMetadata());
+		assertThat(contentType).isEqualTo(
+				this.response.getMetadata().getFirst("content-type"));
 	}
 
 	@Then("^response should be json in file \"([^\"]*)\"$")
@@ -192,21 +192,27 @@ public class CommonEndpointsStepDefs {
 	public void response_should_be_json(final String jsonResponseString)
 			throws Throwable {
 
+		String value = IOUtils
+				.toString((InputStream) this.response.getEntity());
 		JSONObject expected = new JSONObject(jsonResponseString);
-		JSONObject actual = new JSONObject(this.response.getEntity());
+		JSONObject actual = new JSONObject(value);
 
 		JSONAssert.assertEquals(expected, actual, true);
 	}
 
 	@Then("^response should be empty$")
 	public void response_should_be_empty() throws Throwable {
-		assertThat(this.response.getEntity().toString()).isEmpty();
+		String value = IOUtils
+				.toString((InputStream) this.response.getEntity());
+		assertThat(value).isEmpty();
 	}
 
 	@Then("^response should be a json with the fields \"([^\"]*)\"$")
 	public void response_should_be_a_json_with_the_fields(
 			final List<String> fieldList) throws Throwable {
-		JSONObject jsonObject = new JSONObject(this.response.getEntity());
+		String value = IOUtils
+				.toString((InputStream) this.response.getEntity());
+		JSONObject jsonObject = new JSONObject(value);
 
 		assertThat(jsonObject).isNotNull();
 
@@ -218,10 +224,12 @@ public class CommonEndpointsStepDefs {
 	@Then("^response should be file \"([^\"]*)\"$")
 	public void response_should_be_file(final String contentFilePath)
 			throws Throwable {
+		String value = IOUtils
+				.toString((InputStream) this.response.getEntity());
 
 		String content = getContentFromResourceFilePath(contentFilePath);
 
-		assertThat(this.response.getEntity()).isEqualTo(content);
+		assertThat(value).isEqualTo(content);
 	}
 
 	@Then("^response header \"([^\"]*)\" should be \"([^\"]*)\";$")
