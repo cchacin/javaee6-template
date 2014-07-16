@@ -4,5 +4,4 @@
 - Bean Validation
 - Logging configuration
 - Separate property files (Git, DB, Redis)
-- WebApplication exceptions
 - Rename packages, groupId to org.superbiz

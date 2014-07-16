@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
            http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
+    <groupId>com.superbiz</groupId>
     <artifactId>javaee6</artifactId>
     <packaging>war</packaging>
     <version>0.0.1</version>
@@ -19,7 +19,7 @@
         <tomee.version>1.6.0.2</tomee.version>
         <tomee.classifier>plus</tomee.classifier>
         <cucumber.version>1.1.8</cucumber.version>
-        <redisson.version>1.1.2</redisson.version>
+        <redisson.version>1.1.4</redisson.version>
         <jackson.version>2.4.1.1</jackson.version>
     </properties>
 
@@ -218,7 +218,7 @@
         <dependency>
             <groupId>org.apache.openejb</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>6.0-5</version>
+            <version>6.0-6</version>
             <scope>provided</scope>
         </dependency>
 
@@ -242,7 +242,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>2.4.0</version>
+            <version>2.4.1</version>
         </dependency>
 
         <!-- Test Frameworks -->
@@ -263,7 +263,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.30</version>
+            <version>5.1.31</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -271,7 +271,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>1.6.0</version>
+            <version>1.6.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -279,7 +279,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.12.6</version>
+            <version>1.14.4</version>
             <scope>provided</scope>
         </dependency>
 
