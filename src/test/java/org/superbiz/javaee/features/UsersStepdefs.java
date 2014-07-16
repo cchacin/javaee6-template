@@ -19,7 +19,7 @@ public class UsersStepdefs {
 			.create(CommonEndpointsStepDefs.BASE_URL).accept(APPLICATION_JSON)
 			.type(APPLICATION_JSON);
 
-	private UserRepository userRepository = new UserRepository();
+	private UserRepository userRepository;
 
 	@Given("^I have the following users in the database:$")
 	public void I_have_the_following_users_in_the_database(List<UserDto> users)

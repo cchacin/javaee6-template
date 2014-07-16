@@ -4,7 +4,6 @@
 - DBUnit
 - Bean Validation
 - Logging configuration
-- Separate property files (Git, DB, Redis)
 - DeltaSpike DAO
 - Log4J
 - HTTP Caching

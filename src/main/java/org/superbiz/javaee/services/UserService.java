@@ -1,11 +1,11 @@
 package org.superbiz.javaee.services;
 
-import org.superbiz.javaee.entities.User;
-import org.superbiz.javaee.qualifiers.Loggable;
-import org.superbiz.javaee.repositories.UserRepository;
 import lombok.NoArgsConstructor;
 import org.redisson.Redisson;
 import org.redisson.core.RList;
+import org.superbiz.javaee.entities.User;
+import org.superbiz.javaee.qualifiers.Loggable;
+import org.superbiz.javaee.repositories.UserRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -33,8 +33,7 @@ public class UserService implements IUserService {
 		RList<User> users = this.redisson.getList(User.FIND_ALL);
 
 		if (users.isEmpty()) {
-			List<User> dbUsers = this.userRepository.namedFind(User.FIND_ALL,
-					0, 10);
+			List<User> dbUsers = this.userRepository.findAll(0, 10);
 
 			if (!dbUsers.isEmpty()) {
 				users.addAll(dbUsers);
@@ -47,7 +46,7 @@ public class UserService implements IUserService {
 	@Override
 	public User save(final User user) {
 		RList<User> users = this.redisson.getList(User.FIND_ALL);
-		User aUser = this.userRepository.create(user);
+		User aUser = this.userRepository.save(user);
 		users.add(aUser);
 		users.expire(1, TimeUnit.HOURS);
 		return aUser;
