@@ -1,6 +1,7 @@
 package org.superbiz.javaee.resources;
 
 import org.superbiz.javaee.entities.User;
+import org.superbiz.javaee.entities.dtos.UserDTO;
 import org.superbiz.javaee.interceptors.LoggingInterceptor;
 import org.superbiz.javaee.qualifiers.Loggable;
 import org.superbiz.javaee.services.IUserService;
@@ -31,7 +32,7 @@ public class UserResource implements IUserResource {
 	}
 
 	@Override
-	public List<User> getUsers() {
+	public List<UserDTO> getUsers() {
 		return this.userService.findAll();
 	}
 

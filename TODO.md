@@ -4,6 +4,5 @@
 - DBUnit
 - Bean Validation
 - Logging configuration
-- DeltaSpike DAO
 - Log4J
 - HTTP Caching

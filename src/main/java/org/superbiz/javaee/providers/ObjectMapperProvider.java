@@ -29,7 +29,6 @@ public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
 				true);
 		objectMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY,
 				true);
-
 		objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
 				true);
 		objectMapper.configure(

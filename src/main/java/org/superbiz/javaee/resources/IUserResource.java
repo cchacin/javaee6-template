@@ -1,6 +1,7 @@
 package org.superbiz.javaee.resources;
 
 import org.superbiz.javaee.entities.User;
+import org.superbiz.javaee.entities.dtos.UserDTO;
 
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -16,7 +17,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Consumes({APPLICATION_JSON})
 public interface IUserResource {
 	@GET
-	List<User> getUsers();
+	List<UserDTO> getUsers();
 
 	@POST
 	Response saveUser(@Valid User user);

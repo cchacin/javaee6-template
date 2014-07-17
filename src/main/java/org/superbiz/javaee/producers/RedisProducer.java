@@ -3,7 +3,6 @@ package org.superbiz.javaee.producers;
 import org.apache.deltaspike.core.api.config.ConfigProperty;
 import org.redisson.Config;
 import org.redisson.Redisson;
-import org.redisson.codec.SerializationCodec;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -22,7 +21,6 @@ public class RedisProducer {
 	@PostConstruct
 	public void init() {
 		this.config = new Config();
-		this.config.setCodec(new SerializationCodec());
 		this.config.useSingleServer().setAddress(this.server)
 				.setConnectionPoolSize(10);
 		this.redisson = Redisson.create(this.config);

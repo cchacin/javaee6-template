@@ -31,5 +31,5 @@
 
     <Service id="exceptionMapper" class-name="org.superbiz.javaee.exceptions.ConstraintViolationExceptionMapper"/>
 
-    <Service id="json" class-name="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+    <Service id="json" class-name="org.superbiz.javaee.providers.ObjectMapperProvider" />
 </resources>
