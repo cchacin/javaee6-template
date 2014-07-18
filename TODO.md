@@ -1,7 +1,9 @@
+- TravisCI
+- Inject DbSetup properties
+- Dynamic DbSetup inserts
 - Unit tests
 - status.json
 - heartbeat.txt
-- DBUnit
 - Bean Validation
 - Logging configuration
 - Log4J
