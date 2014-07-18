@@ -1,4 +1,3 @@
-- TravisCI
 - Inject DbSetup properties
 - Dynamic DbSetup inserts
 - Unit tests

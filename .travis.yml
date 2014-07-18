@@ -1,0 +1,12 @@
+language: java
+script: "mvn clean test -Pci"
+jdk:
+  - openjdk7
+services:
+  - mysql
+  - redis
+before_script:
+  - mysql -e 'create database javaee_sample;'
+cache:
+  directories:
+  - $HOME/.m2
