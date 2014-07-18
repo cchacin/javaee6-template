@@ -145,6 +145,9 @@
                             <goal>revision</goal>
                         </goals>
                         <configuration>
+                            <gitDescribe>
+                                <skip>true</skip>
+                            </gitDescribe>
                             <generateGitPropertiesFile>true</generateGitPropertiesFile>
                             <generateGitPropertiesFilename>target/classes/git.properties</generateGitPropertiesFilename>
                         </configuration>
