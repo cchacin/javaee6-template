@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/git-status.json")
+@Path("/git-status")
 @Produces({APPLICATION_JSON})
 public class GitResource {
 

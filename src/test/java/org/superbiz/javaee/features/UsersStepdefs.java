@@ -1,53 +1,40 @@
 package org.superbiz.javaee.features;
 
-import org.superbiz.javaee.entities.User;
-import org.superbiz.javaee.repositories.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ninja_squad.dbsetup.DbSetup;
+import com.ninja_squad.dbsetup.destination.DriverManagerDestination;
+import com.ninja_squad.dbsetup.operation.Operation;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
-import lombok.Data;
-import org.apache.cxf.jaxrs.client.WebClient;
+import org.assertj.core.util.Lists;
 
-import javax.ws.rs.core.Response;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static com.ninja_squad.dbsetup.operation.CompositeOperation.sequenceOf;
 
 public class UsersStepdefs {
 
-	private WebClient client = WebClient
-			.create(CommonEndpointsStepDefs.BASE_URL).accept(APPLICATION_JSON)
-			.type(APPLICATION_JSON);
-
-	private UserRepository userRepository;
-
 	@Given("^I have the following users in the database:$")
-	public void I_have_the_following_users_in_the_database(List<UserDto> users)
+	public void I_have_the_following_users_in_the_database(DataTable data)
 			throws Throwable {
 
-		System.out.println("usersDto " + users);
-		for (UserDto user : users) {
-			User u = new User(user.email, user.password, user.fullname);
-			UserWrapper wp = new UserWrapper();
-			wp.setUser(u);
-			System.out.println(wp);
-			final String postBody = new ObjectMapper().writeValueAsString(wp);
-			System.out.println("postBody" + postBody);
-			Response response = this.client.path("/users").post(postBody);
-			System.out.println(response.getStatus());
+		final List<String> columns = data.getGherkinRows().get(0).getCells();
+		System.out.println(Lists.newArrayList(columns
+				.toArray(new String[columns.size()])));
+
+		final List<String> values = data.getGherkinRows().get(1).getCells();
+
+		Operation operation = sequenceOf(CommonDbOperations.DELETE_ALL,
+				CommonDbOperations.INSERT_REFERENCE_DATA);
+		for (int i = 1; i < values.size(); i++) {
+			// Insert.Builder builder = Insert.into("users")
+			// .columns(columns.toArray(new String[columns.size()]))
+			// .values(data.getGherkinRows().get(i).getCells());
+
 		}
-	}
 
-	@Data
-	@XmlRootElement
-	static class UserWrapper {
-		User user;
-	}
-
-	@Data
-	static class UserDto {
-		String email;
-		String password;
-		String fullname;
+		DbSetup dbSetup = new DbSetup(new DriverManagerDestination(
+				"jdbc:mysql://127.0.0.1:3306/javaee_sample", "root", ""),
+				operation);
+		dbSetup.launch();
 	}
 }
