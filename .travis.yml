@@ -1,13 +1,17 @@
 language: java
 jdk:
-  - openjdk7
+- openjdk7
 before_script:
-  - mysql -e 'create database myapp_test;'
+- mysql -e 'create database myapp_test;'
 services:
-  - mysql
-  - redis
+- mysql
+- redis
 cache:
   directories:
   - $HOME/.m2
 install: true
-script: 'mvn clean integration-test -Pci'
+script: mvn clean integration-test -Pci
+after_success: ./update-gh-pages.sh
+env:
+  global:
+  - secure: HBrSsO8ZOZSLq3ozK9qH+Md4QfWdlL9R1UhazOPwiAv5vMahD78CHgj/NqPYBlZyl7hZBZPIT+eekoq/Rh8PZnkUSQIh9oPBtq2y6V2mHvECydk3EIRuQQ1PqSw6ODslBgM0rXWOh+zGCpPoWSESO6B+ERbA1V/heYyZOQqLxQY=
