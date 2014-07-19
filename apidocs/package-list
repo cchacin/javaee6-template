@@ -1,0 +1,11 @@
+org.superbiz.javaee.entities
+org.superbiz.javaee.entities.dtos
+org.superbiz.javaee.events
+org.superbiz.javaee.exceptions
+org.superbiz.javaee.interceptors
+org.superbiz.javaee.producers
+org.superbiz.javaee.providers
+org.superbiz.javaee.qualifiers
+org.superbiz.javaee.repositories
+org.superbiz.javaee.resources
+org.superbiz.javaee.services
