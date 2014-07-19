@@ -8,10 +8,13 @@ import cucumber.api.java.en.Given;
 import org.assertj.core.util.Lists;
 
 import java.util.List;
+import java.util.Properties;
 
 import static com.ninja_squad.dbsetup.operation.CompositeOperation.sequenceOf;
 
 public class UsersStepdefs {
+
+	private final Properties props = Producer.getProperties();
 
 	@Given("^I have the following users in the database:$")
 	public void I_have_the_following_users_in_the_database(DataTable data)
@@ -33,8 +36,9 @@ public class UsersStepdefs {
 		}
 
 		DbSetup dbSetup = new DbSetup(new DriverManagerDestination(
-				"jdbc:mysql://127.0.0.1:3306/javaee_sample", "root", ""),
-				operation);
+				props.getProperty("database.url"),
+				props.getProperty("database.user"),
+				props.getProperty("database.password")), operation);
 		dbSetup.launch();
 	}
 }
