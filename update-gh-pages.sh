@@ -10,7 +10,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git config --global user.name "Travis"
 
   #using token clone gh-pages branch
-  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/cchacin/javaee6-template.git  gh-pages
+  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/cchacin/javaee6-template.git gh-pages > /dev/null
 
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
@@ -19,7 +19,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   #add, commit and push files
   git add -f .
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
-  git push -fq origin gh-pages
+  git push -fq origin gh-pages > /dev/null
 
-  echo -e "Done magic with cobertura\n"
+  echo -e "Done magic with reporting\n"
 fi
