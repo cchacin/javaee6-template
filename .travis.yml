@@ -1,11 +1,12 @@
 language: java
 jdk:
-- openjdk7
+  - openjdk7
 before_script:
-- mysql -e 'create database myapp_test;'
+  - chmod +x update-gh-pages.sh
+  - mysql -e 'create database myapp_test;'
 services:
-- mysql
-- redis
+  - mysql
+  - redis
 cache:
   directories:
   - $HOME/.m2
@@ -14,4 +15,4 @@ script: mvn clean test -Pci
 after_success: ./update-gh-pages.sh
 env:
   global:
-  - secure: HBrSsO8ZOZSLq3ozK9qH+Md4QfWdlL9R1UhazOPwiAv5vMahD78CHgj/NqPYBlZyl7hZBZPIT+eekoq/Rh8PZnkUSQIh9oPBtq2y6V2mHvECydk3EIRuQQ1PqSw6ODslBgM0rXWOh+zGCpPoWSESO6B+ERbA1V/heYyZOQqLxQY=
+    secure: SWDrW9Zm3lcZhFympim61AjT+jFmD9Hq/nG4oexp2TyEzzfabKf82WgSIfScsQX5HWPz97d2KbP6+hjorLH/tMHaT+KKbqRWB2hdiAI5bpM3djae9TyjgcfjlkIJtaPUkvROYjd38bFZZdko5LRjuab4pnY+8jmNXbzMkPOj1u4=
