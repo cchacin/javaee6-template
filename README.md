@@ -1,50 +1,44 @@
 [![Build Status](https://travis-ci.org/cchacin/javaee6-template.svg?branch=master)](https://travis-ci.org/cchacin/javaee6-template)
 
 # Java EE 6 Template Application
-This a template for Java EE 6 using Apache TomEE 1.6.0.2 as the default server.
+This a template for Java EE 6 using [Apache TomEE Plus 1.6.0.2](http://tomee.apache.org/) as the default server.
 
 * *Author* : [Carlos Chacin](http://www.twitter.com/cchacin)
-* *Level* : Intermediate
-* *Technologies* : Java EE 6 (JPA 2.0, CDI 1.0, Bean Validation 1.0, JAX-RS 1.1)
-* *External Libraries* : [Apache DeltaSpike](), [Redisson](), [Jackson]()
-* *Application Server* : Apache TomEE 1.5+
 * *Summary* : An application using Java EE 6 with MySQL as database, Redis as key/value cache
 
 [Download the code from GitHub](https://github.com/cchacin/javaee6-template)
 
 ## Reporting
-[Javadoc](apidocs)
-[Code Coverage](cobertura)
+### [Javadoc](http://cchacin.github.io/javaee6-template/apidocs/)
+### [Code Coverage](http://cchacin.github.io/javaee6-template/cobertura/)
 
-# Apache TomEE+ 1.6.0.2
+# [TomEE](http://tomee.apache.org/)
 Apache TomEE, pronounced "Tommy",is an all-Apache Java EE 6 Web Profile certified stack where Apache Tomcat is top dog. 
 Apache TomEE is assembled from a vanilla Apache Tomcat zip file. We start with Apache Tomcat, add our jars and zip up the rest.
 The result is Tomcat with added EE features - TomEE.
 
 # Technologies:
 
-## [OpenJPA]()
+## [OpenJPA](http://openjpa.apache.org/)
+Apache OpenJPA is a Java persistence project at The Apache Software Foundation that can be used as a stand-alone POJO persistence layer or integrated into any Java EE compliant container and many other lightweight frameworks, such as Tomcat and Spring.
 
-## CXF
+## [CXF](http://cxf.apache.org/)
+Apache CXF is an open source services framework. CXF helps you build and develop services using frontend programming APIs, like JAX-WS and JAX-RS. These services can speak a variety of protocols such as SOAP, XML/HTTP, RESTful HTTP, or CORBA and work over a variety of transports such as HTTP, JMS or JBI.
 
-## Redisson
+## [OpenWebBeans](http://openwebbeans.apache.org/)
+Apache OpenWebBeans delivers an implementation of the Contexts and Dependency injection for Java EE (CDI) 1.0 Specification (JSR299).
+OpenWebBeans is TCK compliant and works on Java SE 5 or later.
 
-```
-$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-```
+## [BVal](http://bval.apache.org/)
+Apache BVal delivers an implementation of the Java Bean Validation (JSR303) Specification which is TCK compliant, works on Java SE 5 or later, and uses the Apache Software License v2.0.
 
-If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.
+# External Libraries
 
-### Designer Templates
-We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.
+## [Redisson](https://github.com/mrniko/redisson)
+Redisson - distributed and scalable Java data structures (Set, SortedSet, Map, ConcurrentMap, List, Queue, Deque, Lock, AtomicLong, CountDownLatch, Publish / Subscribe, HyperLogLog) on top of Redis server. Advanced redis java client
 
-### Rather Drive Stick?
-If you prefer to not use the automatic generator, push a branch named `gh-pages` to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.
+## [DeltaSpike](http://deltaspike.apache.org/index.html)
+DeltaSpike consists of a number of portable CDI extensions that provide useful features for Java application developers.
 
-### Authors and Contributors
-You can @mention a GitHub username to generate a link to their profile. The resulting `<a>` element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (@defunkt), PJ Hyett (@pjhyett), and Tom Preston-Werner (@mojombo) founded GitHub.
-
-### Support or Contact
-Having trouble with Pages? Check out the documentation at http://help.github.com/pages or contact support@github.com and we’ll help you sort it out.
+## [Jackson](https://github.com/FasterXML/jackson)
+Jackson is a suite of data-processing tools for Java (and JVM platform), including the flagship JSON parsing and generation library, as well as additional modules to process data encoded in Avro, CBOR, CSV, Smile, XML or YAML (and list of supported format is still growing!)
