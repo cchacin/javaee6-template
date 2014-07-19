@@ -1,6 +1,6 @@
-- Inject DbSetup properties
-- Dynamic DbSetup inserts
+- Fix Cobertura 
 - Unit tests
+- Dynamic DbSetup inserts
 - status.json
 - heartbeat.txt
 - Bean Validation
