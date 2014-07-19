@@ -9,4 +9,5 @@ services:
 cache:
   directories:
   - $HOME/.m2
-script: "mvn clean test -Pci"
+script:
+  mvn clean test -Pci
