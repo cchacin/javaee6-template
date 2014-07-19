@@ -413,7 +413,7 @@
         <profile>
             <id>ci</id>
             <properties>
-                <database.url>jdbc:mysql://127.0.0.1:3306/javaee_sample</database.url>
+                <database.url>jdbc:mysql://127.0.0.1:3306/myapp_test</database.url>
                 <database.user>root</database.user>
                 <database.password></database.password>
                 <database.driver>com.mysql.jdbc.Driver</database.driver>
