@@ -10,7 +10,7 @@ cache:
   directories:
   - $HOME/.m2
 install: true
-script: mvn clean integration-test -Pci
+script: mvn clean test -Pci
 after_success: ./update-gh-pages.sh
 env:
   global:
