@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Java EE 6 Sample</a> &gt; <a href="index.source.html" class="el_package">org.superbiz.javaee.services</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package org.superbiz.javaee.services;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+import lombok.NoArgsConstructor;
+import org.redisson.core.RList;
+import org.superbiz.javaee.cache.CacheManager;
+import org.superbiz.javaee.entities.User;
+import org.superbiz.javaee.entities.dtos.UserDTO;
+import org.superbiz.javaee.qualifiers.Loggable;
+import org.superbiz.javaee.repositories.UserRepository;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+@Loggable
+@ApplicationScoped
+<span class="nc" id="L21">@NoArgsConstructor</span>
+public class UserService implements IUserService {
+
+	private UserRepository userRepository;
+
+	private CacheManager&lt;UserDTO&gt; cacheManager;
+
+	@Inject
+	public UserService(final UserRepository userRepository,
+<span class="nc" id="L30">			final CacheManager&lt;UserDTO&gt; cacheManager) {</span>
+<span class="nc" id="L31">		this.userRepository = userRepository;</span>
+<span class="nc" id="L32">		this.cacheManager = cacheManager;</span>
+<span class="nc" id="L33">	}</span>
+
+	@Override
+	public List&lt;UserDTO&gt; findAll() {
+<span class="nc" id="L37">		RList&lt;UserDTO&gt; users = this.cacheManager.getList(User.FIND_ALL);</span>
+
+<span class="nc bnc" id="L39" title="All 2 branches missed.">		if (users.isEmpty()) {</span>
+<span class="nc" id="L40">			List&lt;User&gt; dbUsers = this.userRepository.findAll(0, 10);</span>
+
+<span class="nc bnc" id="L42" title="All 2 branches missed.">			if (!dbUsers.isEmpty()) {</span>
+<span class="nc" id="L43">				users.addAll(Lists.transform(dbUsers,</span>
+<span class="nc" id="L44">						new Function&lt;User, UserDTO&gt;() {</span>
+							@Override
+							public UserDTO apply(final User user) {
+<span class="nc" id="L47">								UserDTO dto = new UserDTO(user.getEmail(), user</span>
+										.getFullname(), user.getPassword());
+<span class="nc" id="L49">								dto.setId(user.getId());</span>
+<span class="nc" id="L50">								dto.setCreated(new Date(user.getCreated()</span>
+										.getTime()));
+<span class="nc" id="L52">								dto.setModified(user.getModified());</span>
+<span class="nc" id="L53">								dto.setVersion(user.getVersion());</span>
+<span class="nc" id="L54">								return dto;</span>
+							}
+						}));
+<span class="nc" id="L57">				users.expire(1, TimeUnit.HOURS);</span>
+			}
+		}
+
+<span class="nc" id="L61">		return users;</span>
+	}
+
+	@Override
+	public UserDTO save(final UserDTO user) {
+<span class="nc" id="L66">		RList&lt;UserDTO&gt; users = this.cacheManager.getList(user.getIdsKey());</span>
+<span class="nc" id="L67">		return new UserDTO();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
