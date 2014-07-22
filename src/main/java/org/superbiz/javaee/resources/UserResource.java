@@ -38,9 +38,9 @@ public class UserResource implements IUserResource {
 
 	@Override
 	public Response saveUser(@Valid final User user) {
-		User aUser = null;
+		UserDTO aUser = null;
 		try {
-			aUser = this.userService.save(new User("cchacin@groupon.com",
+			aUser = this.userService.save(new UserDTO("cchacin@groupon.com",
 					"aaaaa", "bbbbb"));
 		} catch (Exception e) {
 			System.out.println(e.getCause());

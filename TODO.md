@@ -1,4 +1,5 @@
-- Fix Cobertura 
+- Redis manager
+- Fix Cobertura
 - Unit tests
 - Dynamic DbSetup inserts
 - status.json

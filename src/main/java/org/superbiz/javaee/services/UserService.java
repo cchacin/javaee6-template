@@ -3,8 +3,8 @@ package org.superbiz.javaee.services;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import lombok.NoArgsConstructor;
-import org.redisson.Redisson;
 import org.redisson.core.RList;
+import org.superbiz.javaee.cache.CacheManager;
 import org.superbiz.javaee.entities.User;
 import org.superbiz.javaee.entities.dtos.UserDTO;
 import org.superbiz.javaee.qualifiers.Loggable;
@@ -23,18 +23,18 @@ public class UserService implements IUserService {
 
 	private UserRepository userRepository;
 
-	private Redisson redisson;
+	private CacheManager cacheManager;
 
 	@Inject
 	public UserService(final UserRepository userRepository,
-			final Redisson redisson) {
+			final CacheManager cacheManager) {
 		this.userRepository = userRepository;
-		this.redisson = redisson;
+		this.cacheManager = cacheManager;
 	}
 
 	@Override
 	public List<UserDTO> findAll() {
-		RList<UserDTO> users = this.redisson.getList(User.FIND_ALL);
+		RList<UserDTO> users = this.cacheManager.getList(User.FIND_ALL);
 
 		if (users.isEmpty()) {
 			List<User> dbUsers = this.userRepository.findAll(0, 10);
@@ -62,11 +62,8 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User save(final User user) {
-		RList<User> users = this.redisson.getList(User.FIND_ALL);
-		User aUser = this.userRepository.save(user);
-		users.add(aUser);
-		users.expire(1, TimeUnit.HOURS);
-		return aUser;
+	public UserDTO save(final UserDTO user) {
+		RList<UserDTO> users = this.cacheManager.getList(user.getIdsKey());
+		return new UserDTO();
 	}
 }
