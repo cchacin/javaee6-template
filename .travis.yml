@@ -13,9 +13,9 @@ cache:
   directories:
   - $HOME/.m2
 install: true
-script: mvn clean test javadoc:javadoc cobertura:cobertura -Pci
+script: mvn clean test
 after_success:
-  - mvn jacoco:report coveralls:jacoco
+  - mvn javadoc:javadoc jacoco:report coveralls:jacoco
   - ./update-gh-pages.sh
 env:
   global:

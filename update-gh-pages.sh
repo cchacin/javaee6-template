@@ -3,7 +3,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
   #copy data we're interested in to other place
   mkdir -p $HOME/reports
-  cp -R ./target/site/cobertura $HOME/reports/.
+  cp -R ./target/site/jacoco $HOME/reports/.
   cp -R ./target/site/apidocs $HOME/reports/.
 
   #go to home and setup git

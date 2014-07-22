@@ -490,9 +490,17 @@
             </properties>
         </profile>
 
-        <!-- CI -->
+        <!-- Travis CI -->
         <profile>
-            <id>ci</id>
+            <id>travis</id>
+
+            <activation>
+                <property>
+                    <name>env.TRAVIS</name>
+                    <value>true</value>
+                </property>
+            </activation>
+
             <properties>
                 <database.url>jdbc:mysql://127.0.0.1:3306/myapp_test</database.url>
                 <database.user>root</database.user>
