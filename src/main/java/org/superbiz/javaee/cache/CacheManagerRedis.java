@@ -2,10 +2,12 @@ package org.superbiz.javaee.cache;
 
 import org.redisson.Redisson;
 import org.redisson.core.RList;
+import org.redisson.core.RMap;
+import org.superbiz.javaee.entities.dtos.UserDTO;
 
 import javax.inject.Inject;
 
-public class CacheManagerRedis implements CacheManager {
+public class CacheManagerRedis<T extends Cacheable> implements CacheManager<T> {
 
 	private Redisson redisson;
 
@@ -15,7 +17,7 @@ public class CacheManagerRedis implements CacheManager {
 	}
 
 	@Override
-	public final <T extends Cacheable> T get(final String key) {
+	public final T get(final String key) {
 		RList<T> list = this.getList(key);
 		if (!exists(list)) {
 			return null;
@@ -24,16 +26,12 @@ public class CacheManagerRedis implements CacheManager {
 	}
 
 	@Override
-	public final <T extends Cacheable> RList<T> getList(final String key) {
-		RList<T> list = this.redisson.getList(key);
-		if (!exists(list)) {
-			return null;
-		}
-		return list;
+	public final RList<T> getList(final String key) {
+		return this.redisson.getList(key);
 	}
 
 	@Override
-	public final <T extends Cacheable> boolean put(final T object) {
+	public final boolean put(final T object) {
 		final RList<T> list = this.getList(object.getElementsKey());
 		if (!exists(list)) {
 			return false;
@@ -43,7 +41,7 @@ public class CacheManagerRedis implements CacheManager {
 	}
 
 	@Override
-	public final <T extends Cacheable> boolean remove(final T object) {
+	public final boolean remove(final T object) {
 		final RList<T> list = this.getList(object.getElementsKey());
 		if (!exists(list)) {
 			return false;
@@ -52,7 +50,7 @@ public class CacheManagerRedis implements CacheManager {
 		return true;
 	}
 
-	private <T extends Cacheable> boolean exists(final RList<T> list) {
+	private boolean exists(final RList<T> list) {
 		return list == null || list.isEmpty();
 	}
 }

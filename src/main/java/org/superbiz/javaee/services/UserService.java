@@ -23,11 +23,11 @@ public class UserService implements IUserService {
 
 	private UserRepository userRepository;
 
-	private CacheManager cacheManager;
+	private CacheManager<UserDTO> cacheManager;
 
 	@Inject
 	public UserService(final UserRepository userRepository,
-			final CacheManager cacheManager) {
+			final CacheManager<UserDTO> cacheManager) {
 		this.userRepository = userRepository;
 		this.cacheManager = cacheManager;
 	}
