@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/cchacin/javaee6-template.svg?branch=master)](https://travis-ci.org/cchacin/javaee6-template)
+[![Coverage Status](https://coveralls.io/repos/cchacin/javaee6-template/badge.png?branch=master)](https://coveralls.io/r/cchacin/javaee6-template?branch=master)
 
 # Java EE 6 Template Application
 This a template for Java EE 6 using [Apache TomEE Plus 1.6.0.2](http://tomee.apache.org/) as the default server.
