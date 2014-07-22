@@ -6,17 +6,17 @@ Java EE 6 Sample,org.superbiz.javaee.exceptions,ConstraintViolationExceptionMapp
 Java EE 6 Sample,org.superbiz.javaee.interceptors,LoggingInterceptor,148,0,2,0,12,0,3,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.services,UserService.new Function() {...},38,0,0,0,7,0,2,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.services,UserService,55,0,4,0,14,0,6,0,4,0
-Java EE 6 Sample,org.superbiz.javaee.events,UserEvent,27,0,0,0,5,0,3,0,3,0
 Java EE 6 Sample,org.superbiz.javaee.cache,CacheManagerRedis,69,0,10,0,19,0,11,0,6,0
+Java EE 6 Sample,org.superbiz.javaee.events,UserEvent,27,0,0,0,5,0,3,0,3,0
 Java EE 6 Sample,org.superbiz.javaee.resources,GitResource,6,0,0,0,2,0,2,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.resources,UserResource,37,0,0,0,12,0,4,0,4,0
 Java EE 6 Sample,org.superbiz.javaee.producers,LoggerProducer,9,0,0,0,2,0,2,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.producers,EntityManagerProducer,13,0,2,0,5,0,4,0,3,0
-Java EE 6 Sample,org.superbiz.javaee.producers,GitFileConfig,5,0,0,0,2,0,2,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.producers,RedisFileConfig,5,0,0,0,2,0,2,0,2,0
+Java EE 6 Sample,org.superbiz.javaee.producers,GitFileConfig,5,0,0,0,2,0,2,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.producers,GitMetadataProducer,556,0,102,0,13,0,80,0,29,0
-Java EE 6 Sample,org.superbiz.javaee.producers,RedisProducer,26,0,0,0,6,0,3,0,3,0
 Java EE 6 Sample,org.superbiz.javaee.producers,DbMigrator,70,0,4,0,11,0,4,0,2,0
+Java EE 6 Sample,org.superbiz.javaee.producers,RedisProducer,26,0,0,0,6,0,3,0,3,0
 Java EE 6 Sample,org.superbiz.javaee.providers,ObjectMapperProvider,51,0,0,0,10,0,2,0,2,0
 Java EE 6 Sample,org.superbiz.javaee.entities.dtos,UserDTO,170,15,30,0,6,2,27,2,12,2
 Java EE 6 Sample,org.superbiz.javaee.entities.dtos,DatedModelDTO,128,7,22,0,3,2,19,2,8,2
