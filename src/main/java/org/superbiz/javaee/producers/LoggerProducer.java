@@ -1,14 +1,17 @@
 package org.superbiz.javaee.producers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
-import java.util.logging.Logger;
 
 @ApplicationScoped
 public class LoggerProducer {
 	@Produces
 	public Logger produceLogger(InjectionPoint ip) {
-		return Logger.getLogger(ip.getMember().getDeclaringClass().getName());
+		return LoggerFactory.getLogger(ip.getMember().getDeclaringClass()
+				.getName());
 	}
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="appFileDailyRolling"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoding>UTF-8</encoding>
+        <append>true</append>
+        <file>${logback.basepath}/${project.artifactId}-test.log</file>
+        <encoder>
+            <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logback.basepath}/${project.artifactId}-test.log.%d{yyyy-MM-dd}.%i
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <logger name="org.superbiz.javaee" level="${logback.rootlevel}" />
+
+    <root level="${logback.rootlevel}">
+        <appender-ref ref="console" />
+        <appender-ref ref="appFileDailyRolling" />
+    </root>
+</configuration>
