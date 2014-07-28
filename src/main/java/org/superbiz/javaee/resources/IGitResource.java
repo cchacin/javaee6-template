@@ -1,6 +1,6 @@
 package org.superbiz.javaee.resources;
 
-import org.superbiz.javaee.producers.GitMetadataProducer;
+import org.superbiz.javaee.entities.dtos.GitMetadata;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -13,5 +13,5 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public interface IGitResource {
 
 	@GET
-	GitMetadataProducer gitStatus();
+	GitMetadata gitStatus();
 }

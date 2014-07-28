@@ -1,14 +1,11 @@
 package org.superbiz.javaee.producers;
 
-import lombok.Data;
 import org.apache.deltaspike.core.api.config.ConfigProperty;
+import org.superbiz.javaee.entities.dtos.GitMetadata;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@Data
-@XmlRootElement
 @ApplicationScoped
 public class GitMetadataProducer {
 
@@ -59,5 +56,13 @@ public class GitMetadataProducer {
 	@Inject
 	@ConfigProperty(name = "git.commit.id.describe")
 	private String describe;
+
+	public GitMetadata metadata() {
+		return new GitMetadata(this.branch, this.buildTime,
+				this.buildUserEmail, this.buildUserName, this.commitId,
+				this.commitIdAbbrev, this.commitMessageShort,
+				this.commitMessageFull, this.commitTime, this.commitUserEmail,
+				this.buildUserName, this.describe);
+	}
 
 }
