@@ -3,7 +3,6 @@
 import org.superbiz.javaee.producers.GitMetadataProducer;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
@@ -11,14 +10,14 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path(&quot;/git-status&quot;)
 @Produces({APPLICATION_JSON})
-<span class="nc" id="L14">public class GitResource {</span>
+<span class="nc" id="L13">public class GitResource implements IGitResource {</span>
 
 	@Inject
 	private GitMetadataProducer gitMetadataProvider;
 
-	@GET
+	@Override
 	public GitMetadataProducer gitStatus() {
-<span class="nc" id="L21">		return this.gitMetadataProvider;</span>
+<span class="nc" id="L20">		return this.gitMetadataProvider;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
