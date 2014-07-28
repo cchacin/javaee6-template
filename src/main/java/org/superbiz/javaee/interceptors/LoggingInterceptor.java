@@ -13,24 +13,26 @@ import javax.interceptor.InvocationContext;
 public class LoggingInterceptor {
 
 	@Inject
-	private Logger logger;
+	private transient Logger logger;
 
 	@AroundInvoke
 	protected Object log(final InvocationContext ic) throws Exception {
-		logger.info(">>> " + ic.getTarget().getClass().getName() + "-"
-				+ ic.getMethod().getName());
-		StringBuilder sb = new StringBuilder("[");
-		for (Object obj : ic.getParameters()) {
-			sb.append(obj.toString());
-			sb.append(", ");
+		logger.info("Entering >>> {}-{}", ic.getTarget().getClass().getName(),
+				ic.getMethod().getName());
+		if (logger.isDebugEnabled()) {
+			StringBuilder sb = new StringBuilder("[");
+			for (Object obj : ic.getParameters()) {
+				sb.append(obj.toString());
+				sb.append(", ");
+			}
+			sb.append("]");
+			logger.debug("Parameters: {}", sb.toString());
 		}
-		sb.append("]");
-		logger.info("parameters: {}", sb.toString());
 		try {
 			return ic.proceed();
 		} finally {
-			logger.info("<<< {}-{}", ic.getTarget().getClass().getName(), ic
-					.getMethod().getName());
+			logger.info("Exiting <<< {}-{}", ic.getTarget().getClass()
+					.getName(), ic.getMethod().getName());
 		}
 	}
 }
