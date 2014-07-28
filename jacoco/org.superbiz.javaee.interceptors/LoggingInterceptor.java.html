@@ -13,24 +13,26 @@ import javax.interceptor.InvocationContext;
 <span class="nc" id="L13">public class LoggingInterceptor {</span>
 
 	@Inject
-	private Logger logger;
+	private transient Logger logger;
 
 	@AroundInvoke
 	protected Object log(final InvocationContext ic) throws Exception {
-<span class="nc" id="L20">		logger.info(&quot;&gt;&gt;&gt; &quot; + ic.getTarget().getClass().getName() + &quot;-&quot;</span>
-				+ ic.getMethod().getName());
-<span class="nc" id="L22">		StringBuilder sb = new StringBuilder(&quot;[&quot;);</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">		for (Object obj : ic.getParameters()) {</span>
-<span class="nc" id="L24">			sb.append(obj.toString());</span>
-<span class="nc" id="L25">			sb.append(&quot;, &quot;);</span>
+<span class="nc" id="L20">		logger.info(&quot;Entering &gt;&gt;&gt; {}-{}&quot;, ic.getTarget().getClass().getName(),</span>
+				ic.getMethod().getName());
+<span class="nc bnc" id="L22" title="All 2 branches missed.">		if (logger.isDebugEnabled()) {</span>
+<span class="nc" id="L23">			StringBuilder sb = new StringBuilder(&quot;[&quot;);</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">			for (Object obj : ic.getParameters()) {</span>
+<span class="nc" id="L25">				sb.append(obj.toString());</span>
+<span class="nc" id="L26">				sb.append(&quot;, &quot;);</span>
+			}
+<span class="nc" id="L28">			sb.append(&quot;]&quot;);</span>
+<span class="nc" id="L29">			logger.debug(&quot;Parameters: {}&quot;, sb.toString());</span>
 		}
-<span class="nc" id="L27">		sb.append(&quot;]&quot;);</span>
-<span class="nc" id="L28">		logger.info(&quot;parameters: {}&quot;, sb.toString());</span>
 		try {
-<span class="nc" id="L30">			return ic.proceed();</span>
+<span class="nc" id="L32">			return ic.proceed();</span>
 		} finally {
-<span class="nc" id="L32">			logger.info(&quot;&lt;&lt;&lt; {}-{}&quot;, ic.getTarget().getClass().getName(), ic</span>
-					.getMethod().getName());
+<span class="nc" id="L34">			logger.info(&quot;Exiting &lt;&lt;&lt; {}-{}&quot;, ic.getTarget().getClass()</span>
+					.getName(), ic.getMethod().getName());
 		}
 	}
 }
