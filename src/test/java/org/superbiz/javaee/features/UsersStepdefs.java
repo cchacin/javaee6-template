@@ -2,17 +2,20 @@ package org.superbiz.javaee.features;
 
 import com.ninja_squad.dbsetup.DbSetup;
 import com.ninja_squad.dbsetup.destination.DriverManagerDestination;
+import com.ninja_squad.dbsetup.operation.Insert;
 import com.ninja_squad.dbsetup.operation.Operation;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
-import org.assertj.core.util.Lists;
+import gherkin.formatter.model.DataTableRow;
+import gherkin.formatter.model.Row;
 
 import java.util.List;
 import java.util.Properties;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static com.ninja_squad.dbsetup.operation.CompositeOperation.sequenceOf;
 
-public class UsersStepdefs {
+public class UsersStepDefs {
 
 	private final Properties props = Producer.getProperties();
 
@@ -20,25 +23,30 @@ public class UsersStepdefs {
 	public void I_have_the_following_users_in_the_database(DataTable data)
 			throws Throwable {
 
-		final List<String> columns = data.getGherkinRows().get(0).getCells();
-		System.out.println(Lists.newArrayList(columns
-				.toArray(new String[columns.size()])));
+		List<DataTableRow> rows = data.getGherkinRows();
+		final List<String> columns = rows.get(0).getCells();
+		System.out.println(columns);
 
-		final List<String> values = data.getGherkinRows().get(1).getCells();
+		final List<DataTableRow> rows2 = rows.subList(1, rows.size());
 
-		Operation operation = sequenceOf(CommonDbOperations.DELETE_ALL,
-				CommonDbOperations.INSERT_REFERENCE_DATA);
-		for (int i = 1; i < values.size(); i++) {
-			// Insert.Builder builder = Insert.into("users")
-			// .columns(columns.toArray(new String[columns.size()]))
-			// .values(data.getGherkinRows().get(i).getCells());
-
+		List<Operation> operations = newArrayList();
+		operations.add(CommonDbOperations.DELETE_ALL);
+		// operations.add(CommonDbOperations.INSERT_REFERENCE_DATA);
+		Insert.Builder builder = Insert.into("users");
+		builder.columns(columns.toArray(new String[columns.size()]));
+		for (Row row : rows2) {
+			System.out.println(row.getCells());
+			builder.values(row.getCells().toArray(
+					new String[row.getCells().size()]));
+			operations.add(builder.build());
 		}
+
+		Operation allOperations = sequenceOf(operations);
 
 		DbSetup dbSetup = new DbSetup(new DriverManagerDestination(
 				props.getProperty("database.url"),
 				props.getProperty("database.user"),
-				props.getProperty("database.password")), operation);
+				props.getProperty("database.password")), allOperations);
 		dbSetup.launch();
 	}
 }
