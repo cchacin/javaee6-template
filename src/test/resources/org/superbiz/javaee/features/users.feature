@@ -16,8 +16,8 @@ Feature: REST API to manage users
         {
             "users": [
                 {
-                    "id": 1,
-                    "created": "2014-07-17T00:00:00-04:00",
+                    "id": "${json-unit.ignore}",
+                    "created": "${json-unit.ignore}",
                     "email": "cchacin@superbiz.org",
                     "fullname": "Carlos",
                     "password": "passw0rd",

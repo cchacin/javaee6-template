@@ -49,7 +49,7 @@ public class UserService implements IUserService {
 								dto.setId(user.getId());
 								dto.setCreated(new Date(user.getCreated()
 										.getTime()));
-								dto.setModified(user.getModified());
+								// dto.setModified(user.getModified());
 								dto.setVersion(user.getVersion());
 								return dto;
 							}
