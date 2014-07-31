@@ -3,7 +3,6 @@ package org.superbiz.javaee.features;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 
@@ -20,7 +19,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Slf4j
 public class CommonEndpointsStepDefs {
 
 	private Response response;
@@ -38,8 +36,7 @@ public class CommonEndpointsStepDefs {
 			encoded = Files.readAllBytes(Paths.get(getClass().getResource(
 					postBodyFilePath).toURI()));
 		} catch (IOException | URISyntaxException e) {
-			log.error("Error reading file from path {}, {}", postBodyFilePath,
-					e.getMessage());
+			throw new RuntimeException(e);
 		}
 
 		return StandardCharsets.UTF_8.decode(ByteBuffer.wrap(encoded))
