@@ -18,26 +18,26 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class UserResourceShould {
 
-    @Mock
-    UserService userService;
+	@Mock
+	UserService userService;
 
-    UserResource cut;
+	UserResource cut;
 
-    List<UserDTO> users;
+	List<UserDTO> users;
 
-    @Before
-    public void setUp() {
-        this.cut = new UserResource(this.userService);
-        this.users = Lists.newArrayList(new UserDTO());
-    }
+	@Before
+	public void setUp() {
+		this.cut = new UserResource(this.userService);
+		this.users = Lists.newArrayList(new UserDTO());
+	}
 
-    @Test
-    public void returnAListOfUsers() {
+	@Test
+	public void returnAListOfUsers() {
 
-        when(this.userService.findAll()).thenReturn(this.users);
+		when(this.userService.findAll()).thenReturn(this.users);
 
-        assertThat(this.cut.getUsers()).isEqualTo(this.users);
+		assertThat(this.cut.getUsers()).isEqualTo(this.users);
 
-        verify(this.userService).findAll();
-    }
+		verify(this.userService).findAll();
+	}
 }
