@@ -34,7 +34,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public List<UserDTO> findAll() {
-		RList<UserDTO> users = this.cacheManager.getList(User.FIND_ALL);
+		RList<UserDTO> users = this.cacheManager.getList("users.all");
 
 		if (users.isEmpty()) {
 			List<User> dbUsers = this.userRepository.findAll(0, 10);
