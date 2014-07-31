@@ -8,6 +8,10 @@
     <version>0.0.1</version>
     <name>Java EE 6 Sample</name>
 
+    <prerequisites>
+        <maven>3.0.0</maven>
+    </prerequisites>
+
     <properties>
         <!-- Version strings -->
         <project.build.targetJdk>1.7</project.build.targetJdk>
