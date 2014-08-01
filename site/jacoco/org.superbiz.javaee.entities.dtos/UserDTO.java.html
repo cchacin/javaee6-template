@@ -3,27 +3,29 @@
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Builder;
 import org.superbiz.javaee.cache.Cacheable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-<span class="nc bnc" id="L10" title="All 30 branches missed.">@Data</span>
-<span class="fc" id="L11">@NoArgsConstructor</span>
-<span class="fc" id="L12">@AllArgsConstructor</span>
+<span class="nc bnc" id="L11" title="All 30 branches missed.">@Data</span>
+<span class="pc" id="L12">@Builder</span>
+<span class="nc" id="L13">@NoArgsConstructor</span>
+<span class="fc" id="L14">@AllArgsConstructor</span>
 @XmlRootElement(name = &quot;users&quot;)
 public class UserDTO extends DatedModelDTO implements Cacheable {
-<span class="fc" id="L15">	private String email;</span>
-<span class="nc" id="L16">	private String fullname;</span>
-<span class="nc" id="L17">	private String password;</span>
+<span class="fc" id="L17">	private String email;</span>
+<span class="nc" id="L18">	private String fullname;</span>
+<span class="nc" id="L19">	private String password;</span>
 
 	@Override
 	public String getElementsKey() {
-<span class="nc" id="L21">		return &quot;users:all&quot;;</span>
+<span class="nc" id="L23">		return &quot;users:all&quot;;</span>
 	}
 
 	@Override
 	public String getIdsKey() {
-<span class="nc" id="L26">		return &quot;users:ids&quot;;</span>
+<span class="nc" id="L28">		return &quot;users:ids&quot;;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

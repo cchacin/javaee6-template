@@ -2,29 +2,28 @@
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.deltaspike.data.api.audit.CreatedOn;
+import org.apache.deltaspike.data.api.audit.ModifiedOn;
+import org.apache.deltaspike.data.impl.audit.AuditEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
-<span class="nc" id="L9">@Data</span>
+<span class="nc" id="L15">@Data</span>
 @MappedSuperclass
-<span class="nc bnc" id="L11" title="All 24 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+<span class="nc bnc" id="L17" title="All 24 branches missed.">@EqualsAndHashCode(callSuper = true)</span>
+@EntityListeners(AuditEntityListener.class)
 public abstract class DatedModel extends Model {
 
-	@Column(nullable = false)
-<span class="nc" id="L15">	private Date created;</span>
+	@CreatedOn
+	@Temporal(TemporalType.TIMESTAMP)
+<span class="nc" id="L23">	private Date created;</span>
 
-	@Column(nullable = false)
-<span class="nc" id="L18">	private Date modified;</span>
-
-	@PrePersist
-	public void create() {
-<span class="nc" id="L22">		this.created = new Date();</span>
-<span class="nc" id="L23">	}</span>
-
-	@PreUpdate
-	public void modify() {
-<span class="nc" id="L27">		this.modified = new Date();</span>
-<span class="nc" id="L28">	}</span>
+	@ModifiedOn(onCreate = true)
+	@Temporal(TemporalType.TIMESTAMP)
+<span class="nc" id="L27">	private Date modified;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
