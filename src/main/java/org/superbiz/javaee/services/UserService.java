@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 @Loggable
 @ApplicationScoped
 @NoArgsConstructor
-public class UserService implements IUserService {
+public class UserService {
 
 	private UserRepository userRepository;
 
@@ -32,7 +32,6 @@ public class UserService implements IUserService {
 		this.cacheManager = cacheManager;
 	}
 
-	@Override
 	public List<UserDTO> findAll() {
 		RList<UserDTO> users = this.cacheManager.getList(User.FIND_ALL);
 
@@ -61,7 +60,6 @@ public class UserService implements IUserService {
 		return users;
 	}
 
-	@Override
 	public UserDTO save(final UserDTO user) {
 		RList<UserDTO> users = this.cacheManager.getList(user.getIdsKey());
 		return new UserDTO();

@@ -1,42 +1,42 @@
 package org.superbiz.javaee.resources;
 
+import lombok.NoArgsConstructor;
 import org.superbiz.javaee.entities.User;
 import org.superbiz.javaee.entities.dtos.UserDTO;
 import org.superbiz.javaee.interceptors.LoggingInterceptor;
 import org.superbiz.javaee.qualifiers.Loggable;
-import org.superbiz.javaee.services.IUserService;
-import lombok.NoArgsConstructor;
+import org.superbiz.javaee.services.UserService;
 
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
 import javax.validation.Valid;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
+
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/users")
 @Loggable
 @NoArgsConstructor
 @Interceptors(LoggingInterceptor.class)
-public class UserResource implements IUserResource {
+@Produces({APPLICATION_JSON})
+@Consumes({APPLICATION_JSON})
+public class UserResource {
 
-	// @Inject
-	private UriInfo uriInfo;
-
-	private IUserService userService;
+	private UserService userService;
 
 	@Inject
-	public UserResource(final IUserService userService) {
+	public UserResource(final UserService userService) {
 		this.userService = userService;
 	}
 
-	@Override
+	@GET
 	public List<UserDTO> getUsers() {
 		return this.userService.findAll();
 	}
 
-	@Override
+	@POST
 	public Response saveUser(@Valid final User user) {
 		UserDTO aUser = null;
 		try {
