@@ -31,7 +31,7 @@ public class CommonEndpointsStepDefs {
 	private static String appName = "functional_tests";
 
 	private String getContentFromResourceFilePath(String postBodyFilePath) {
-		byte[] encoded = null;
+		byte[] encoded;
 		try {
 			encoded = Files.readAllBytes(Paths.get(getClass().getResource(
 					postBodyFilePath).toURI()));

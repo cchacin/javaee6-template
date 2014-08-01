@@ -24,7 +24,7 @@ public class UserResourceTest {
 	UserResource cut;
 
 	List<UserDTO> users;
-	UserDTO.UserDTOBuilder userBuilder = UserDTO.builder();
+	final UserDTO.UserDTOBuilder userBuilder = UserDTO.builder();
 
 	@Before
 	public void setUp() {

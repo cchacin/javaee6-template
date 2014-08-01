@@ -11,7 +11,6 @@ import javax.inject.Inject;
 
 @ApplicationScoped
 public class RedisProducer {
-	private Config config;
 	private Redisson redisson;
 
 	@Inject
@@ -20,10 +19,10 @@ public class RedisProducer {
 
 	@PostConstruct
 	public void init() {
-		this.config = new Config();
-		this.config.useSingleServer().setAddress(this.server)
+		final Config config = new Config();
+		config.useSingleServer().setAddress(this.server)
 				.setConnectionPoolSize(10);
-		this.redisson = Redisson.create(this.config);
+		this.redisson = Redisson.create(config);
 
 	}
 

@@ -45,7 +45,7 @@ public class CommonDatabaseStepDefs {
 		final List<DataTableRow> rows2 = rows.subList(1, rows.size());
 
 		List<Operation> operations = newArrayList();
-		Insert.Builder builder = Insert.into("users");
+		Insert.Builder builder = Insert.into(tableName);
 		builder.columns(columns.toArray(new String[columns.size()]));
 		for (Row row : rows2) {
 			builder.values(row.getCells().toArray(
