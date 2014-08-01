@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserResourceShould {
+public class UserResourceTest {
 
 	@Mock
 	UserService userService;
@@ -32,7 +32,7 @@ public class UserResourceShould {
 	}
 
 	@Test
-	public void returnAListOfUsers() {
+	public void shouldReturnAListOfUsers() {
 
 		when(this.userService.findAll()).thenReturn(this.users);
 
