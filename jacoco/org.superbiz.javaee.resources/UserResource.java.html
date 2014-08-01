@@ -27,13 +27,13 @@ public class UserResource implements IUserResource {
 	private IUserService userService;
 
 	@Inject
-<span class="nc" id="L30">	public UserResource(final IUserService userService) {</span>
-<span class="nc" id="L31">		this.userService = userService;</span>
-<span class="nc" id="L32">	}</span>
+<span class="fc" id="L30">	public UserResource(final IUserService userService) {</span>
+<span class="fc" id="L31">		this.userService = userService;</span>
+<span class="fc" id="L32">	}</span>
 
 	@Override
 	public List&lt;UserDTO&gt; getUsers() {
-<span class="nc" id="L36">		return this.userService.findAll();</span>
+<span class="fc" id="L36">		return this.userService.findAll();</span>
 	}
 
 	@Override
