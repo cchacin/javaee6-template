@@ -18,11 +18,11 @@ import java.util.Date;
 @EntityListeners(AuditEntityListener.class)
 public abstract class DatedModel extends Model {
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreatedOn
-	private Date created;
+    @CreatedOn
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@ModifiedOn(onCreate = true)
-	private Date modified;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date modified;
 }
