@@ -15,7 +15,7 @@ import java.util.Properties;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.ninja_squad.dbsetup.operation.CompositeOperation.sequenceOf;
 
-public class UsersStepDefs {
+public class UsersSteps {
 
 	private final Properties props = Producer.getProperties();
 
