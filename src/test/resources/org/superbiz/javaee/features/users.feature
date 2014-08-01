@@ -2,7 +2,7 @@
 Feature: REST API to manage users
 
   Background:
-    Given I have the following users in the database:
+    Given I have the only following rows in the "users" table:
       | id | created             | modified            | email                | fullname | password | version |
       | 1  | 2014-07-16 00:00:00 | 2014-07-16 00:00:00 | cchacin@superbiz.org | Carlos   | passw0rd | 0       |
 
@@ -18,6 +18,7 @@ Feature: REST API to manage users
                 {
                     "id": "${json-unit.ignore}",
                     "created": "${json-unit.ignore}",
+                    "modified": "${json-unit.ignore}",
                     "email": "cchacin@superbiz.org",
                     "fullname": "Carlos",
                     "password": "passw0rd",
