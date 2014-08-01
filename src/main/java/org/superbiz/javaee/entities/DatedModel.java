@@ -2,28 +2,27 @@ package org.superbiz.javaee.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.deltaspike.data.api.audit.CreatedOn;
+import org.apache.deltaspike.data.api.audit.ModifiedOn;
+import org.apache.deltaspike.data.impl.audit.AuditEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Data
 @MappedSuperclass
 @EqualsAndHashCode(callSuper = true)
+@EntityListeners(AuditEntityListener.class)
 public abstract class DatedModel extends Model {
 
-	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedOn
 	private Date created;
 
-	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@ModifiedOn(onCreate = true)
 	private Date modified;
-
-	@PrePersist
-	public void create() {
-		this.created = new Date();
-	}
-
-	@PreUpdate
-	public void modify() {
-		this.modified = new Date();
-	}
 }

@@ -337,7 +337,6 @@
             <groupId>org.apache.deltaspike.core</groupId>
             <artifactId>deltaspike-core-impl</artifactId>
             <version>${deltaspike.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- DeltaSpike Data -->
@@ -350,7 +349,6 @@
             <groupId>org.apache.deltaspike.modules</groupId>
             <artifactId>deltaspike-data-module-impl</artifactId>
             <version>${deltaspike.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
