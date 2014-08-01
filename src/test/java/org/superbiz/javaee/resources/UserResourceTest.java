@@ -24,11 +24,13 @@ public class UserResourceTest {
 	UserResource cut;
 
 	List<UserDTO> users;
+	UserDTO.UserDTOBuilder userBuilder = UserDTO.builder();
 
 	@Before
 	public void setUp() {
+		this.users = Lists
+				.newArrayList(userBuilder.fullname("cchacin").build());
 		this.cut = new UserResource(this.userService);
-		this.users = Lists.newArrayList(new UserDTO());
 	}
 
 	@Test
