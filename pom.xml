@@ -224,6 +224,7 @@
                     <removeDefaultWebapps>true</removeDefaultWebapps>
                     <tomeeVersion>${tomee.version}</tomeeVersion>
                     <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
+                    <classpaths />
                 </configuration>
                 <executions>
                     <execution>
