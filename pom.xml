@@ -225,6 +225,9 @@
                     <tomeeVersion>${tomee.version}</tomeeVersion>
                     <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
                     <classpaths />
+                    <libs>
+                        <lib>mysql:mysql-connector-java:5.1.31</lib>
+                    </libs>
                 </configuration>
                 <executions>
                     <execution>
@@ -401,7 +404,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.31</version>
-            <scope>runtime</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>

@@ -12,6 +12,8 @@
         url = ${database.url}
         username = ${database.user}
         password = ${database.password}
+        maxActive = 15
+        maxIdle = 7
         validationQuery = SELECT 1
     </Resource>
     <Resource id="jdbc/javaeeSampleDatabaseUnmanaged" type="javax.sql.DataSource">
@@ -26,6 +28,8 @@
         url = ${database.url}
         username = ${database.user}
         password = ${database.password}
+        maxActive = 15
+        maxIdle = 7
         validationQuery = SELECT 1
     </Resource>
 
