@@ -1,6 +1,8 @@
 package org.superbiz.javaee.listeners;
 
 import com.mysql.jdbc.AbandonedConnectionCleanupThread;
+import io.netty.util.ThreadDeathWatcher;
+import io.netty.util.concurrent.FastThreadLocal;
 import org.redisson.Redisson;
 import org.slf4j.Logger;
 
@@ -49,17 +51,19 @@ public class AppContextListener implements ServletContextListener {
 				logger.error("Exception deregistering drivers: {}", t);
 			}
 		}
-		try {
-			Thread.sleep(2000L);
-		} catch (Exception e) {
-			logger.error("Fatal error: {}", e);
-		}
 
 		try {
 			logger.info("Shutting down Redisson: {}", redisson.getConfig());
-			// redisson.shutdown();
+			redisson.shutdown();
 		} catch (Exception e) {
 			logger.error("Error shutting down Redisson: {}", e);
+		}
+
+		try {
+			FastThreadLocal.removeAll();
+			FastThreadLocal.destroy();
+        } catch (Exception e) {
+			logger.error("Fatal error: {}", e);
 		}
 	}
 }
