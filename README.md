@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/cchacin/javaee6-template.svg?branch=master)](https://travis-ci.org/cchacin/javaee6-template)
 [![Coverage Status](https://coveralls.io/repos/cchacin/javaee6-template/badge.png?branch=master)](https://coveralls.io/r/cchacin/javaee6-template?branch=master)
 [![Stories in Ready](https://badge.waffle.io/cchacin/javaee6-template.svg?label=ready&title=Ready)](http://waffle.io/cchacin/javaee6-template)
-[![Dependency Status](https://www.versioneye.com/user/projects/53e2f41be0a229905e000012/badge.svg?style=flat)](https://www.versioneye.com/user/projects/53e2f41be0a229905e000012)
+[![Dependency Status](https://www.versioneye.com/user/projects/53e2f41be0a229905e000012/badge.svg)](https://www.versioneye.com/user/projects/53e2f41be0a229905e000012)
 
 
 # Java EE 6 Template Application
