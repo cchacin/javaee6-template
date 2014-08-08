@@ -6,11 +6,43 @@
     <artifactId>javaee6</artifactId>
     <packaging>war</packaging>
     <version>0.0.1</version>
+
+
     <name>Java EE 6 Sample</name>
+    <description>An application using Java EE 6 with MySQL as database, Redis as key/value cache.</description>
+    <inceptionYear>2014</inceptionYear>
+    <url>https://github.com/cchacin/javaee6-template</url>
+
+    <scm>
+        <url>scm:git:git@github.com:cchacin/javaee6-template.git</url>
+        <connection>scm:git:git@github.com:cchacin/javaee6-template.git</connection>
+        <developerConnection>scm:git:git@github.com:cchacin/javaee6-template.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
     <prerequisites>
         <maven>3.0.0</maven>
     </prerequisites>
+
+    <licenses>
+        <license>
+            <name>Apache v2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>cchacin</id>
+            <name>Carlos Chacin</name>
+            <email>cchacin@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-4</timezone>
+        </developer>
+    </developers>
 
     <properties>
         <!-- Version strings -->
