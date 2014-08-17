@@ -1,6 +1,5 @@
 package org.superbiz.javaee.resources;
 
-import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.superbiz.javaee.entities.dtos.UserDTO;
 import org.superbiz.javaee.services.UserService;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,8 +28,7 @@ public class UserResourceTest {
 
 	@Before
 	public void setUp() {
-		this.users = Lists
-				.newArrayList(userBuilder.fullname("cchacin").build());
+		this.users = Collections.singletonList(userBuilder.fullname("cchacin").build());
 		this.cut = new UserResource(this.userService);
 	}
 
