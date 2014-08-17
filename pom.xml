@@ -7,6 +7,11 @@
     <packaging>war</packaging>
     <version>0.0.1</version>
 
+    <parent>
+        <groupId>com.github.cchacin</groupId>
+        <artifactId>basepom</artifactId>
+        <version>0.0.4</version>
+    </parent>
 
     <name>Java EE 6 Sample</name>
     <description>An application using Java EE 6 with MySQL as database, Redis as key/value cache.</description>
@@ -20,40 +25,10 @@
         <tag>HEAD</tag>
     </scm>
 
-    <prerequisites>
-        <maven>3.0.0</maven>
-    </prerequisites>
-
-    <licenses>
-        <license>
-            <name>Apache v2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-            <distribution>manual</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>cchacin</id>
-            <name>Carlos Chacin</name>
-            <email>cchacin@gmail.com</email>
-            <roles>
-                <role>Developer</role>
-            </roles>
-            <timezone>-4</timezone>
-        </developer>
-    </developers>
-
     <properties>
         <!-- Version strings -->
-        <project.build.targetJdk>1.8</project.build.targetJdk>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mockito.version>1.9.5</mockito.version>
         <junit.version>4.11</junit.version>
-        <tomee.version>1.7.0</tomee.version>
-        <tomee.classifier>plus</tomee.classifier>
         <deltaspike.version>1.0.1</deltaspike.version>
         <cucumber.version>1.1.8</cucumber.version>
         <redisson.version>1.1.5</redisson.version>
@@ -65,312 +40,7 @@
 
     <build>
 
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
-        <testResources>
-            <testResource>
-                <directory>${basedir}/src/test/resources</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>
-
         <plugins>
-
-            <!-- Compiler plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${project.build.targetJdk}</source>
-                    <target>${project.build.targetJdk}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <showWarnings>true</showWarnings>
-                </configuration>
-            </plugin>
-
-            <!-- Resources plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-
-            <!-- Surefire plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.17</version>
-                <configuration>
-                    <forkCount>1</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <useSystemClassLoader>false</useSystemClassLoader>
-                    <failIfNoTests>false</failIfNoTests>
-                    <systemPropertyVariables>
-                        <buildDirectory>${project.build.directory}</buildDirectory>
-                    </systemPropertyVariables>
-                    <excludes>
-                        <exclude>**/*ITest.java</exclude>
-                        <exclude>**/*ITests.java</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>unit-tests</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Failsafe plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.17</version>
-                <configuration>
-                    <includes>
-                        <include>**/*ITest.java</include>
-                        <include>**/*ITests.java</include>
-                    </includes>
-                    <useSystemClassLoader>false</useSystemClassLoader>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- War Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <webResources>
-                        <resource>
-                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
-                            <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
-
-            <!-- Git plugin -->
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>2.1.10</version>
-                <executions>
-                    <execution>
-                        <id>git-info</id>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                        <configuration>
-                            <gitDescribe>
-                                <skip>true</skip>
-                            </gitDescribe>
-                            <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                            <generateGitPropertiesFilename>target/classes/git.properties</generateGitPropertiesFilename>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- OpenJPA Plugin -->
-            <plugin>
-                <groupId>org.apache.openjpa</groupId>
-                <artifactId>openjpa-maven-plugin</artifactId>
-                <version>2.3.0</version>
-                <configuration>
-                    <includes>**/entities/*.class</includes>
-                    <excludes>**/entities/DTO*.class</excludes>
-                    <addDefaultConstructor>true</addDefaultConstructor>
-                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>enhancer</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>enhance</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.openjpa</groupId>
-                        <artifactId>openjpa</artifactId>
-                        <!-- set the version to be the same as the level in your runtime -->
-                        <version>2.2.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
-            <!-- Eclipse Formatter Plugin -->
-            <plugin>
-                <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
-                <artifactId>maven-java-formatter-plugin</artifactId>
-                <version>0.4</version>
-                <configuration>
-                    <overrideConfigCompilerVersion>true</overrideConfigCompilerVersion>
-                    <compilerSource>${project.build.targetJdk}</compilerSource>
-                    <compilerCompliance>${project.build.targetJdk}</compilerCompliance>
-                    <compilerTargetPlatform>${project.build.targetJdk}</compilerTargetPlatform>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- TomEE Maven Plugin -->
-            <plugin>
-                <groupId>org.apache.openejb.maven</groupId>
-                <artifactId>tomee-maven-plugin</artifactId>
-                <version>${tomee.version}</version>
-                <configuration>
-                    <context>ROOT</context>
-                    <simpleLog>true</simpleLog>
-                    <removeDefaultWebapps>true</removeDefaultWebapps>
-                    <tomeeVersion>${tomee.version}</tomeeVersion>
-                    <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
-                    <classpaths />
-                    <libs>
-                        <lib>mysql:mysql-connector-java:5.1.31</lib>
-                    </libs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>start</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                        <configuration>
-                            <checkStarted>true</checkStarted>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.1.201405082137</version>
-                <executions>
-                    <execution>
-                        <id>default-prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>default-check</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-                <configuration>
-                    <doclet>org.jboss.apiviz.APIviz</doclet>
-                    <docletArtifact>
-                        <groupId>org.jboss.apiviz</groupId>
-                        <artifactId>apiviz</artifactId>
-                        <version>1.3.2.GA</version>
-                    </docletArtifact>
-                    <useStandardDocletOptions>true</useStandardDocletOptions>
-                    <charset>${project.build.sourceEncoding}</charset>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <docencoding>${project.build.sourceEncoding}</docencoding>
-                    <breakiterator>true</breakiterator>
-                    <version>true</version>
-                    <author>true</author>
-                    <keywords>true</keywords>
-                    <additionalparam>
-                        -quiet -sourceclasspath ${project.build.outputDirectory}
-                    </additionalparam>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <basedir>${basedir}</basedir>
-                    <header>${basedir}/header.txt</header>
-                    <properties>
-                        <owner>Carlos Chacin</owner>
-                        <email>cchacin@gmail.com</email>
-                    </properties>
-                    <quiet>false</quiet>
-                    <failIfMissing>true</failIfMissing>
-                    <aggregate>false</aggregate>
-                    <includes>
-                        <include>src/main/java/</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/README</exclude>
-                        <exclude>src/test/resources/**</exclude>
-                        <exclude>src/main/resources/**</exclude>
-                    </excludes>
-                    <useDefaultExcludes>true</useDefaultExcludes>
-                    <mapping>
-                        <java>JAVADOC_STYLE</java>
-                    </mapping>
-                    <strictCheck>true</strictCheck>
-                    <useDefaultMapping>true</useDefaultMapping>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
         </plugins>
     </build>
@@ -577,7 +247,7 @@
             <properties>
                 <database.url>jdbc:mysql://127.0.0.1:3306/javaee_sample</database.url>
                 <database.user>root</database.user>
-                <database.password></database.password>
+                <database.password />
                 <database.driver>com.mysql.jdbc.Driver</database.driver>
 
                 <redis.host>127.0.0.1:6379</redis.host>
@@ -593,7 +263,7 @@
             <properties>
                 <database.url>jdbc:mysql://127.0.0.1:3306/javaee_sample</database.url>
                 <database.user>root</database.user>
-                <database.password></database.password>
+                <database.password />
                 <database.driver>com.mysql.jdbc.Driver</database.driver>
 
                 <redis.host>pub-redis-10957.us-east-1-2.2.ec2.garantiadata.com:10957</redis.host>
@@ -617,7 +287,7 @@
             <properties>
                 <database.url>jdbc:mysql://127.0.0.1:3306/myapp_test</database.url>
                 <database.user>root</database.user>
-                <database.password></database.password>
+                <database.password />
                 <database.driver>com.mysql.jdbc.Driver</database.driver>
 
                 <redis.host>127.0.0.1:6379</redis.host>
