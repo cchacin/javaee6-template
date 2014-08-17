@@ -10,6 +10,7 @@ import cucumber.api.java.en.Given;
 import gherkin.formatter.model.DataTableRow;
 import gherkin.formatter.model.Row;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -19,11 +20,21 @@ import static com.ninja_squad.dbsetup.operation.CompositeOperation.sequenceOf;
 
 public class CommonDatabaseStepDefs {
 
-    private final Properties props = Producer.getProperties();
+    private static final Properties properties = new Properties();
+
+    static {
+        try {
+            properties.load(CommonDatabaseStepDefs.class
+                    .getResourceAsStream("/test_db.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private final Destination destination = new DriverManagerDestination(
-            props.getProperty("database.url"),
-            props.getProperty("database.user"),
-            props.getProperty("database.password"));
+            properties.getProperty("database.url"),
+            properties.getProperty("database.user"),
+            properties.getProperty("database.password"));
 
     @Given("^I have the following rows in the \"(.*?)\" table:$")
     public void i_have_the_following_rows_in_the_table(String tableName,
