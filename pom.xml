@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.github.cchacin</groupId>
         <artifactId>basepom</artifactId>
-        <version>0.0.4</version>
+        <version>0.0.5</version>
     </parent>
 
     <name>Java EE 6 Sample</name>
@@ -37,13 +37,6 @@
         <logback.version>1.1.2</logback.version>
         <netty.version>4.0.23.Final</netty.version>
     </properties>
-
-    <build>
-
-        <plugins>
-
-        </plugins>
-    </build>
 
     <dependencies>
         <!-- Java EE 6 -->
@@ -244,6 +237,58 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- TomEE Maven Plugin -->
+            <plugin>
+                <groupId>org.apache.openejb.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${tomee.version}</version>
+                <configuration>
+                    <context>ROOT</context>
+                    <simpleLog>true</simpleLog>
+                    <removeDefaultWebapps>true</removeDefaultWebapps>
+                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
+                    <classpaths/>
+                    <libs>
+                        <lib>mysql:mysql-connector-java:5.1.31</lib>
+                    </libs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <checkStarted>true</checkStarted>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Surefire plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <!-- Failsafe plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <!-- Development -->
