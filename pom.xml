@@ -288,27 +288,6 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
 
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>${basepom.plugin.git-commit-id.version}</version>
-                <executions>
-                    <execution>
-                        <id>git-info</id>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                        <configuration>
-                            <gitDescribe>
-                                <skip>true</skip>
-                            </gitDescribe>
-                            <generateGitPropertiesFile>true</generateGitPropertiesFile>
-                            <generateGitPropertiesFilename>target/classes/git.properties
-                            </generateGitPropertiesFilename>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
