@@ -13,17 +13,15 @@ Feature: REST API to manage users
     And response content type should be "application/json"
     And response should be json:
     """
-        {
-            "users": [
-                {
-                    "id": "${json-unit.ignore}",
-                    "created": "${json-unit.ignore}",
-                    "modified": "${json-unit.ignore}",
-                    "email": "cchacin@superbiz.org",
-                    "fullname": "Carlos",
-                    "password": "passw0rd",
-                    "version": 0
-                }
-            ]
-        }
+        [
+          {
+              "id": "${json-unit.ignore}",
+              "created": "${json-unit.ignore}",
+              "modified": "${json-unit.ignore}",
+              "email": "cchacin@superbiz.org",
+              "fullname": "Carlos",
+              "password": "passw0rd",
+              "version": 0
+          }
+        ]
       """

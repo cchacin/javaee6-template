@@ -9,18 +9,16 @@ Feature: Endpoint to get git status
     And response should be json:
     """
       {
-          "gitMetadata": {
-              "branch": "${json-unit.ignore}",
-              "buildTime": "${json-unit.ignore}",
-              "buildUserEmail": "${json-unit.ignore}",
-              "buildUserName": "${json-unit.ignore}",
-              "commitId": "${json-unit.ignore}",
-              "commitIdAbbrev": "${json-unit.ignore}",
-              "commitMessageFull": "${json-unit.ignore}",
-              "commitMessageShort": "${json-unit.ignore}",
-              "commitTime": "${json-unit.ignore}",
-              "commitUserEmail": "${json-unit.ignore}",
-              "commitUserName": "${json-unit.ignore}"
-          }
+        "branch": "${json-unit.ignore}",
+        "buildTime": "${json-unit.ignore}",
+        "buildUserEmail": "${json-unit.ignore}",
+        "buildUserName": "${json-unit.ignore}",
+        "commitId": "${json-unit.ignore}",
+        "commitIdAbbrev": "${json-unit.ignore}",
+        "commitMessageFull": "${json-unit.ignore}",
+        "commitMessageShort": "${json-unit.ignore}",
+        "commitTime": "${json-unit.ignore}",
+        "commitUserEmail": "${json-unit.ignore}",
+        "commitUserName": "${json-unit.ignore}"
       }
     """
