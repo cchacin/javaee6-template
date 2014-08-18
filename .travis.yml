@@ -9,6 +9,8 @@ before_script:
 services:
   - mysql
   - redis
+git:
+  - depth: 500
 cache:
   directories:
   - $HOME/.m2
