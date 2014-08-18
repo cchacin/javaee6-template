@@ -6,6 +6,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(format = {"pretty", "html:target/cucumber",
-		"json:target/cucumber.json"}, tags = {"@users_endpoint"}, glue = {"org.superbiz.javaee"})
+		"json:target/cucumber.json"}, tags = {"@users_endpoint"}, glue = {"com.github.cchacin","org.superbiz.javaee"})
 public class UsersEndpointITest {
 }
