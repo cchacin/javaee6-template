@@ -5,7 +5,7 @@
 
 
 # Java EE 6 Template Application
-This a template for Java EE 6 using [Apache TomEE Plus 1.6.0.2](http://tomee.apache.org/) as the default server.
+This a template for Java EE 6 using [Apache TomEE Plus 1.7.0](http://tomee.apache.org/) as the default server.
 
 * *Author* : [Carlos Chacin](http://www.twitter.com/carloschacin)
 * *Summary* : An application using Java EE 6 with MySQL as database, Redis as key/value cache
